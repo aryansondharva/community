@@ -1,0 +1,1 @@
+"""Info Hunter test suite."""
