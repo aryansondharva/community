@@ -516,12 +516,11 @@ def create_app(
             )
         return None
     
+    # Include extended API routes (notifications, insights, export)
+    from info_hunter.api.extended import router as extended_router
+    app.include_router(extended_router, prefix="/api")
+    
     return app
-
-
-# ============================================================================
-# Helper Functions
-# ============================================================================
 
 def _data_source_to_response(data_source: DataSource) -> DataSourceResponse:
     """Convert a DataSource to a DataSourceResponse."""
@@ -600,3 +599,8 @@ __all__ = [
     "ExtractionRuleRequest",
     "PaginationConfigRequest",
 ]
+
+
+# ============================================================================
+# Helper Functions
+# ============================================================================

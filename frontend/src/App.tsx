@@ -6,6 +6,8 @@ import { Sources } from './pages/Sources';
 import { Jobs } from './pages/Jobs';
 import { Schedules } from './pages/Schedules';
 import { Search } from './pages/Search';
+import { Insights } from './pages/Insights';
+import { Export } from './pages/Export';
 import './App.css';
 
 const queryClient = new QueryClient({
@@ -28,6 +30,8 @@ function App() {
             <Route path="jobs" element={<Jobs />} />
             <Route path="schedules" element={<Schedules />} />
             <Route path="search" element={<Search />} />
+            <Route path="insights" element={<Insights />} />
+            <Route path="export" element={<Export />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getSources, createSource, deleteSource, triggerJob, DataSource } from '../api/client';
+import { getSources, createSource, deleteSource, triggerJob } from '../api/client';
 import { Plus, Trash2, Play, X } from 'lucide-react';
 
 export function Sources() {
@@ -9,7 +9,7 @@ export function Sources() {
   const [formData, setFormData] = useState({
     name: '',
     url_pattern: '',
-    source_type: 'scholarship' as const,
+    source_type: 'scholarship' as 'scholarship' | 'internship' | 'price' | 'learning',
     extraction_rules: [{ field_name: 'title', selector: 'h1', selector_type: 'css' as const, required: true }],
     rate_limit_ms: 1000,
   });
@@ -109,7 +109,7 @@ export function Sources() {
                 <label>Source Type</label>
                 <select 
                   value={formData.source_type} 
-                  onChange={e => setFormData({ ...formData, source_type: e.target.value as DataSource['source_type'] })}
+                  onChange={e => setFormData({ ...formData, source_type: e.target.value as 'scholarship' | 'internship' | 'price' | 'learning' })}
                 >
                   <option value="scholarship">Scholarship</option>
                   <option value="internship">Internship</option>

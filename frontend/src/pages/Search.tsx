@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { searchDocuments, SearchResult } from '../api/client';
+import { searchDocuments } from '../api/client';
+import type { SearchResult } from '../api/client';
 import { Search as SearchIcon, ExternalLink } from 'lucide-react';
 
 export function Search() {

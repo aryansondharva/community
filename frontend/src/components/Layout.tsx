@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Database, Search, Calendar, Zap, LayoutDashboard } from 'lucide-react';
+import { Database, Search, Calendar, Zap, LayoutDashboard, Brain, Download } from 'lucide-react';
+import { NotificationToast } from './NotificationToast';
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -7,6 +8,8 @@ const navItems = [
   { path: '/jobs', label: 'Jobs', icon: Zap },
   { path: '/schedules', label: 'Schedules', icon: Calendar },
   { path: '/search', label: 'Search', icon: Search },
+  { path: '/insights', label: 'AI Insights', icon: Brain },
+  { path: '/export', label: 'Export', icon: Download },
 ];
 
 export function Layout() {
@@ -33,6 +36,7 @@ export function Layout() {
         </nav>
       </aside>
       <main className="main-content">
+        <NotificationToast />
         <Outlet />
       </main>
     </div>
