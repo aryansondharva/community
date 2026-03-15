@@ -1,0 +1,236 @@
+/* Additional impressive animations */
+
+/* Matrix rain effect */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.1;
+  overflow: hidden;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: var(--red);
+  animation: matrixFall linear infinite;
+  text-shadow: 0 0 5px var(--red);
+}
+
+@keyframes matrixFall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* Pulse glow effect */
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(204, 0, 0, 0.8), 0 0 60px rgba(255, 17, 17, 0.4);
+    transform: scale(1.05);
+  }
+}
+
+/* Electric border effect */
+.electric-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.electric-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: electricScan 3s linear infinite;
+}
+
+.electric-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  animation: electricScan 3s linear infinite 1.5s;
+}
+
+@keyframes electricScan {
+  to {
+    left: 100%;
+  }
+  to {
+    right: 100%;
+  }
+}
+
+/* Hologram effect */
+.hologram {
+  position: relative;
+  animation: hologramFlicker 4s ease-in-out infinite;
+}
+
+@keyframes hologramFlicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1) contrast(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2) contrast(1.1);
+  }
+  75% {
+    opacity: 0.9;
+    filter: brightness(0.9) contrast(1.2);
+  }
+}
+
+/* Data stream effect */
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(204, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  animation: dataFlow 3s linear infinite;
+}
+
+@keyframes dataFlow {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Cyber grid background */
+.cyber-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient(rgba(204, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(204, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Enhanced hover effects */
+.cyber-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.3), transparent);
+  transition: all 0.5s ease;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.cyber-hover:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cyber-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(204, 0, 0, 0.3);
+  border-color: var(--gold) !important;
+}
+
+/* Loading animation */
+.cyber-loader {
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top: 3px solid var(--red);
+  border-right: 3px solid var(--gold);
+  border-radius: 50%;
+  animation: cyberSpin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+}
+
+@keyframes cyberSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Text scramble effect */
+.text-scramble {
+  animation: textScramble 0.5s ease-in-out;
+}
+
+@keyframes textScramble {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+  }
+  25% {
+    text-shadow: 2px 2px 20px rgba(255, 17, 17, 0.8);
+    transform: translateX(2px);
+  }
+  50% {
+    text-shadow: -2px -2px 20px rgba(201, 168, 76, 0.8);
+    transform: translateX(-2px);
+  }
+  75% {
+    text-shadow: 2px -2px 20px rgba(204, 0, 0, 0.8);
+    transform: translateX(1px);
+  }
+}

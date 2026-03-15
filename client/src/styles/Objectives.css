@@ -1,84 +1,133 @@
-/* OBJECTIVES */
+/* ── OBJECTIVES ── */
 #objectives {
   background: var(--black2);
+  position: relative;
+  overflow: hidden;
+}
+
+#objectives::before {
+  content: 'MISIÓN';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24vw;
+  color: rgba(204, 0, 0, 0.025);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  letter-spacing: 12px;
+  white-space: nowrap;
 }
 
 .obj-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
 .obj-card {
-  border: 1px solid rgba(204, 0, 0, .12);
-  padding: 2rem;
+  border: 1px solid rgba(204, 0, 0, 0.15);
+  padding: 2.2rem 2rem 2rem;
   position: relative;
-  background: rgba(204, 0, 0, .03);
-  transition: all .35s;
+  background: linear-gradient(135deg, rgba(204,0,0,0.04) 0%, rgba(6,6,6,0.8) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   cursor: default;
+  backdrop-filter: blur(5px);
 }
 
+/* Red left border accent */
 .obj-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--red), transparent);
-  box-shadow: 2px 0 12px rgba(204, 0, 0, .3);
+  width: 4px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--red), var(--gold));
+  box-shadow: 2px 0 15px rgba(204,0,0,0.5);
+  transition: height 0.4s ease;
 }
 
 .obj-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(204, 0, 0, .07), transparent 60%);
+  background: radial-gradient(circle at top right, rgba(204,0,0,0.09), transparent 65%);
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
-.obj-card:hover {
-  border-color: rgba(204, 0, 0, .45);
-  transform: translateY(-6px);
-  box-shadow: 0 25px 50px rgba(204, 0, 0, .12);
+.obj-card:hover::before {
+  height: 100%;
 }
 
 .obj-card:hover::after {
   opacity: 1;
 }
 
+.obj-card:hover {
+  border-color: rgba(204, 0, 0, 0.4);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(204,0,0,0.15);
+  background: linear-gradient(135deg, rgba(204,0,0,0.07) 0%, rgba(10,10,10,0.9) 100%);
+}
+
 .obj-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 4.5rem;
-  color: rgba(204, 0, 0, .08);
+  font-size: 5rem;
+  color: rgba(204, 0, 0, 0.07);
   position: absolute;
-  top: .3rem;
+  top: 0.3rem;
   right: 1rem;
   line-height: 1;
-  transition: color .3s;
+  transition: color 0.3s, transform 0.3s;
+  letter-spacing: -2px;
 }
 
 .obj-card:hover .obj-num {
-  color: rgba(204, 0, 0, .18);
+  color: rgba(204, 0, 0, 0.2);
+  transform: scale(1.1);
 }
 
 .obj-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  display: block;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.obj-card:hover .obj-icon {
+  transform: scale(1.25) rotateY(360deg);
+  filter: drop-shadow(0 0 20px rgba(204,0,0,0.7));
 }
 
 .obj-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
   color: var(--gold);
-  margin-bottom: .5rem;
+  margin-bottom: 0.6rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 20px rgba(201,168,76,0.2);
+}
+
+.obj-card:hover .obj-name {
+  text-shadow: 0 0 20px rgba(201,168,76,0.5);
 }
 
 .obj-desc {
-  font-size: .88rem;
+  font-size: 0.9rem;
   color: var(--gray);
-  line-height: 1.7;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+.obj-card:hover .obj-desc {
+  color: rgba(200, 200, 200, 0.9);
 }

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParticles } from './hooks/useParticles';
+import { useMatrixRain } from './hooks/useMatrixRain';
+import { useCyberGrid } from './hooks/useCyberGrid';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
@@ -12,10 +14,13 @@ import FAQ from './components/FAQ';
 import Register from './components/Register';
 import Footer from './components/Footer';
 import './styles/global.css';
+import './styles/Animations.css';
 
 function App() {
-  // Initialize particles
+  // Initialize all effects
   useParticles('particles');
+  useMatrixRain('matrix-rain');
+  useCyberGrid();
 
   // Scroll reveal animation
   useEffect(() => {
@@ -96,13 +101,17 @@ function App() {
   useEffect(() => {
     const interactiveElements = document.querySelectorAll('a, button, .obj-card, .judge-card, .prize-card, .sp-box');
     
-    // Simple hover effect without custom cursor
+    // Enhanced hover effects
     interactiveElements.forEach((el) => {
+      el.classList.add('cyber-hover');
+      
       el.addEventListener('mouseenter', () => {
-        el.style.transform = 'scale(1.02)';
+        el.classList.add('hologram');
+        el.classList.add('pulse-glow');
       });
       el.addEventListener('mouseleave', () => {
-        el.style.transform = 'scale(1)';
+        el.classList.remove('hologram');
+        el.classList.remove('pulse-glow');
       });
     });
 
@@ -117,6 +126,7 @@ function App() {
   return (
     <div className="App">
       <div id="particles"></div>
+      <div id="matrix-rain"></div>
       
       <Navigation />
       <Hero />

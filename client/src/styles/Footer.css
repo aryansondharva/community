@@ -1,9 +1,11 @@
-/* FOOTER */
+/* ── FOOTER ── */
 footer {
   background: var(--black);
-  padding: 4rem 2rem;
+  border-top: 1px solid rgba(204, 0, 0, 0.25);
+  padding: 5rem 2rem 3rem;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 footer::before {
@@ -13,67 +15,149 @@ footer::before {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--red), transparent);
-  box-shadow: 0 0 10px var(--red);
+  background: linear-gradient(90deg, transparent, var(--red), var(--gold), var(--red), transparent);
+  opacity: 0.7;
+}
+
+footer::after {
+  content: 'HACKX';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22vw;
+  color: rgba(204,0,0,0.025);
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 8px;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .ft-mask {
   font-size: 5rem;
-  opacity: .2;
-  margin-bottom: 1rem;
-  animation: maskFlicker 5s step-start infinite;
+  margin-bottom: 1.5rem;
+  animation: maskFloat 5s ease-in-out infinite;
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 20px rgba(204,0,0,0.4));
 }
 
-@keyframes maskFlicker {
-  0%, 95%, 100% { opacity: .2; }
-  96% { opacity: .5; }
-  97% { opacity: .1; }
-  98% { opacity: .4; }
+@keyframes maskFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
 }
 
 .ft-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  letter-spacing: 8px;
   color: var(--red);
-  letter-spacing: 5px;
-  text-shadow: 0 0 20px rgba(204, 0, 0, .5);
+  text-shadow: var(--glow-red);
+  margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 1;
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(204,0,0,0.5); }
+  50% { text-shadow: 0 0 40px rgba(204,0,0,1), 0 0 80px rgba(204,0,0,0.4); }
 }
 
 .ft-logo span {
   color: var(--gold);
+  text-shadow: var(--glow-gold);
 }
 
 .ft-tag {
   font-family: 'Special Elite', cursive;
-  color: var(--gray);
-  font-size: .88rem;
-  margin: .5rem 0 2rem;
   font-style: italic;
+  color: rgba(201,168,76,0.65);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
 }
 
 .ft-links {
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
   list-style: none;
-  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .ft-links a {
+  font-family: 'Share Tech Mono', monospace;
   color: var(--gray);
   text-decoration: none;
-  font-size: .72rem;
+  font-size: 0.72rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  transition: color .2s;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.ft-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--red);
+  transition: width 0.3s;
 }
 
 .ft-links a:hover {
   color: var(--red);
 }
 
+.ft-links a:hover::after {
+  width: 100%;
+}
+
+/* Bella Ciao credit line */
+.ft-bella {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 8px;
+  color: rgba(204,0,0,0.4);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  animation: bellaBlink 6s ease-in-out infinite;
+}
+
+@keyframes bellaBlink {
+  0%, 90%, 100% { opacity: 0.4; }
+  45% { opacity: 0.8; }
+}
+
 .ft-copy {
-  font-size: .68rem;
-  color: rgba(136, 136, 136, .35);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  color: rgba(136,136,136,0.45);
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Divider line */
+.ft-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  margin: 1.5rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .ft-links { gap: 1rem; }
 }

@@ -1,78 +1,154 @@
-/* SPONSORS */
+/* ── SPONSORS ── */
 #sponsors {
   background: var(--black2);
+  position: relative;
+  overflow: hidden;
+}
+
+#sponsors::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(201,168,76,0.04) 0%, transparent 30%),
+    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,168,76,0.03), transparent);
+  pointer-events: none;
 }
 
 .sp-tier {
-  font-size: .62rem;
-  letter-spacing: 5px;
-  color: var(--gold);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 6px;
+  color: var(--gray2);
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  margin-top: 2.5rem;
+  position: relative;
 }
 
+.sp-tier::before,
 .sp-tier::after {
   content: '';
-  flex: 1;
+  position: absolute;
+  top: 50%;
+  width: 25%;
   height: 1px;
-  background: rgba(201, 168, 76, .2);
+  background: rgba(255,255,255,0.08);
+}
+
+.sp-tier::before { left: 0; }
+.sp-tier::after  { right: 0; }
+
+.sp-tier:first-of-type {
+  margin-top: 0;
 }
 
 .sp-row {
   display: flex;
+  gap: 1.2rem;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .sp-box {
-  background: rgba(255, 255, 255, .03);
-  border: 1px solid rgba(255, 255, 255, .07);
-  padding: 1rem 2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.2rem 2.5rem;
   font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 3px;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
   color: var(--gray);
-  transition: all .3s;
+  background: rgba(6,6,6,0.6);
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
   cursor: default;
 }
 
+.sp-box::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: translateY(2px);
+  transition: transform 0.3s;
+}
+
+.sp-box:hover::before {
+  transform: translateY(0);
+}
+
 .sp-box:hover {
-  border-color: rgba(204, 0, 0, .4);
-  color: var(--white);
-  box-shadow: 0 0 20px rgba(204, 0, 0, .1);
+  border-color: rgba(201,168,76,0.4);
+  color: var(--gold);
+  background: rgba(201,168,76,0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.1);
+  text-shadow: 0 0 15px rgba(201,168,76,0.4);
 }
 
 .sp-box.plat {
+  border-color: rgba(201,168,76,0.25);
   font-size: 1.6rem;
-  border-color: rgba(201, 168, 76, .25);
-  color: var(--gold2);
+  padding: 1.5rem 3rem;
+  color: rgba(201,168,76,0.7);
+  background: linear-gradient(135deg, rgba(201,168,76,0.05), rgba(6,6,6,0.8));
 }
 
 .sp-box.plat:hover {
-  box-shadow: 0 0 25px rgba(201, 168, 76, .2);
+  color: var(--gold);
 }
 
 .sp-cta {
-  border: 1px solid rgba(201, 168, 76, .2);
-  padding: 2rem;
   text-align: center;
-  margin-top: 2rem;
-  background: rgba(201, 168, 76, .02);
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(204,0,0,0.15);
+  background: rgba(204,0,0,0.03);
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sp-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  animation: electricScan 4s linear infinite;
+}
+
+@keyframes electricScan {
+  to { left: 200%; }
 }
 
 .sp-cta p {
   font-family: 'Special Elite', cursive;
+  font-style: italic;
   color: var(--gray);
-  margin-bottom: .8rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .sp-cta a {
-  color: var(--gold);
-  font-size: .82rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--red);
   text-decoration: none;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  border-bottom: 1px solid rgba(204,0,0,0.3);
+  padding-bottom: 2px;
+}
+
+.sp-cta a:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  text-shadow: 0 0 12px rgba(201,168,76,0.5);
 }

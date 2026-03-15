@@ -1,147 +1,207 @@
-/* REGISTER */
+/* ── REGISTER ── */
 #register {
   background: var(--black2);
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
+/* Dramatic background */
 #register::before {
   content: '';
   position: absolute;
   inset: 0;
   background: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80') center/cover no-repeat;
-  filter: brightness(.07) saturate(1.5);
+  filter: brightness(0.07) saturate(2) hue-rotate(-5deg);
 }
 
+/* Red radial vignette */
 #register::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(204, 0, 0, .14), transparent 70%);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(204,0,0,0.18), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(100,0,0,0.15), transparent 70%);
+  pointer-events: none;
 }
 
 .reg-inner {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 650px;
+  max-width: 680px;
   margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Dali mask backdrop */
+.reg-inner::before {
+  content: '🎭';
+  position: absolute;
+  font-size: 18rem;
+  opacity: 0.05;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: maskPulse 5s ease-in-out infinite;
+}
+
+@keyframes maskPulse {
+  0%, 100% { opacity: 0.04; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.08; transform: translate(-50%, -50%) scale(1.05); }
 }
 
 .reg-big {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 9vw, 7.5rem);
-  letter-spacing: 5px;
-  line-height: .9;
-  margin-bottom: 1rem;
+  font-size: clamp(4rem, 10vw, 8rem);
+  letter-spacing: 6px;
+  line-height: 0.9;
+  margin-bottom: 1.2rem;
 }
 
 .blink-gold {
-  animation: blinkG 1.5s step-start infinite;
+  animation: blinkG 2s step-start infinite;
   color: var(--gold);
+  text-shadow: 0 0 30px var(--gold), 0 0 60px rgba(201,168,76,0.4);
 }
 
 @keyframes blinkG {
-  0%, 100% { color: var(--gold); text-shadow: 0 0 25px var(--gold); }
-  50% { color: rgba(201, 168, 76, .08); text-shadow: none; }
+  0%, 100% { color: var(--gold); text-shadow: 0 0 30px var(--gold), 0 0 60px rgba(201,168,76,0.4); }
+  48%, 52% { color: rgba(201,168,76,0.06); text-shadow: none; }
 }
 
 .reg-sub {
   font-family: 'Special Elite', cursive;
-  color: var(--gray);
-  margin-bottom: 2rem;
-  font-size: 1rem;
+  color: rgba(201,168,76,0.7);
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
   font-style: italic;
+  letter-spacing: 0.5px;
 }
 
 .reg-form {
   display: flex;
   flex-direction: column;
-  gap: .9rem;
-  max-width: 440px;
+  gap: 1rem;
+  max-width: 460px;
   margin: 0 auto;
 }
 
 .reg-form input,
 .reg-form select {
-  background: rgba(255, 255, 255, .04);
-  border: 1px solid rgba(255, 255, 255, .08);
+  background: rgba(6,6,6,0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid rgba(204,0,0,0.3);
   color: var(--white);
-  padding: .9rem 1.2rem;
+  padding: 1rem 1.3rem;
   font-family: 'Rajdhani', sans-serif;
   font-size: 1rem;
+  letter-spacing: 0.5px;
   outline: none;
-  transition: border-color .2s;
+  transition: all 0.25s;
+  backdrop-filter: blur(10px);
 }
 
 .reg-form input:focus,
 .reg-form select:focus {
-  border-color: var(--red);
-  box-shadow: 0 0 15px rgba(204, 0, 0, .15);
+  border-color: rgba(204,0,0,0.6);
+  border-left-color: var(--red);
+  box-shadow: 0 0 20px rgba(204,0,0,0.18), inset 0 0 20px rgba(204,0,0,0.04);
+  background: rgba(20,6,6,0.95);
+}
+
+.reg-form input:hover,
+.reg-form select:hover {
+  border-color: rgba(204,0,0,0.3);
 }
 
 .reg-form input::placeholder {
-  color: rgba(245, 240, 232, .22);
+  color: rgba(245,240,232, 0.2);
+  font-style: italic;
+}
+
+.reg-form select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23CC0000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
 }
 
 .reg-form select option {
   background: var(--black);
+  color: var(--white);
 }
 
 .reg-submit {
-  background: var(--red);
+  background: linear-gradient(135deg, var(--red3), var(--red));
   color: #fff;
   border: none;
-  padding: 1.1rem;
+  padding: 1.2rem;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 5px;
+  font-size: 1.6rem;
+  letter-spacing: 6px;
   cursor: pointer;
-  transition: all .25s;
-  box-shadow: 0 0 30px rgba(204, 0, 0, .4);
+  transition: all 0.25s;
+  box-shadow: 0 0 35px rgba(204,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100%-10px) 100%, 0% 100%);
+  margin-top: 0.5rem;
 }
 
 .reg-submit::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
   transform: translateX(-100%);
 }
 
 .reg-submit:hover::before {
   transform: translateX(100%);
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 
 .reg-submit:hover {
-  background: var(--red2);
-  box-shadow: 0 0 60px rgba(255, 17, 17, .8);
+  background: linear-gradient(135deg, var(--red), var(--red2));
+  box-shadow: var(--glow-red-intense);
+  transform: translateY(-3px);
+  letter-spacing: 8px;
 }
 
 .reg-note {
-  font-size: .72rem;
-  color: rgba(136, 136, 136, .6);
-  margin-top: .8rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.64rem;
+  color: rgba(136,136,136,0.55);
+  margin-top: 1rem;
+  letter-spacing: 1px;
 }
 
+/* Success state */
 #reg-success {
   display: block;
-  padding: 3rem 2rem;
+  padding: 4rem 2rem;
   text-align: center;
 }
 
 .suc-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   color: var(--gold);
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   animation: blinkG 1s step-start 6;
+  text-shadow: 0 0 40px var(--gold);
+  margin-bottom: 1rem;
 }
 
 .suc-sub {
   color: var(--gray);
-  margin-top: .5rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
 }
