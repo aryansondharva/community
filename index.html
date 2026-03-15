@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>HACKX 2025 — Hack The System</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--red:#CC0000;--red2:#FF1111;--red3:#8B0000;--gold:#C9A84C;--gold2:#F5D78E;--black:#080808;--black2:#111;--black3:#1a1a1a;--white:#F5F0E8;--gray:#888;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-serif;overflow-x:hidden;cursor:crosshair;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--red);}
+
+/* CURSOR */
+.cursor{position:fixed;width:20px;height:20px;border:2px solid var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,border-color .2s;mix-blend-mode:difference;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");opacity:.35;pointer-events:none;z-index:9997;animation:noiseAnim .15s steps(1) infinite;}
+@keyframes noiseAnim{0%{transform:translate(0,0);}25%{transform:translate(-2%,-1%);}50%{transform:translate(1%,2%);}75%{transform:translate(-1%,1%);}100%{transform:translate(2%,-2%);}}
+
+/* PARTICLES */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:pFloat linear infinite;opacity:0;}
+@keyframes pFloat{0%{transform:translateY(100vh);opacity:0;}10%{opacity:.9;}90%{opacity:.3;}100%{transform:translateY(-10vh);opacity:0;}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:.85rem 3rem;background:rgba(8,8,8,.96);border-bottom:1px solid rgba(204,0,0,.2);backdrop-filter:blur(14px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:5px;color:var(--red);text-shadow:0 0 18px rgba(204,0,0,.6);animation:logoPulse 3s ease-in-out infinite;}
+@keyframes logoPulse{0%,100%{text-shadow:0 0 18px rgba(204,0,0,.6);}50%{text-shadow:0 0 35px rgba(204,0,0,.9),0 0 60px rgba(204,0,0,.3);}}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;position:relative;transition:color .2s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--red);box-shadow:0 0 6px var(--red);transition:width .3s;}
+.nav-links a:hover{color:var(--red);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:var(--red);color:#fff;border:none;padding:.55rem 1.6rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:4px;cursor:pointer;transition:all .2s;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);box-shadow:0 0 20px rgba(204,0,0,.4);}
+.nav-cta:hover{background:var(--red2);box-shadow:0 0 40px rgba(255,17,17,.8);}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:7rem 2rem 4rem;text-align:center;}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1616048056617-93b94a339009?w=1600&q=80') center/cover no-repeat;filter:brightness(.22) saturate(1.3) hue-rotate(-5deg);animation:heroPan 25s ease-in-out infinite alternate;}
+@keyframes heroPan{0%{transform:scale(1.06) translateX(0);}100%{transform:scale(1.12) translateX(-4%);}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,.5) 0%,rgba(140,0,0,.06) 45%,rgba(8,8,8,.9) 100%);}
+.hero-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.12) 2px,rgba(0,0,0,.12) 4px);pointer-events:none;animation:scanMove 8s linear infinite;}
+@keyframes scanMove{0%{background-position:0 0;}100%{background-position:0 100px;}}
+.hero-content{position:relative;z-index:2;}
+.hero-ticker{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--red);letter-spacing:4px;margin-bottom:1rem;animation:fadeUp .5s ease both;display:flex;align-items:center;gap:.5rem;justify-content:center;}
+.ticker-dot{width:8px;height:8px;background:var(--red);border-radius:50%;animation:tickerBlink 1s step-start infinite;box-shadow:0 0 8px var(--red);}
+@keyframes tickerBlink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* GLITCH */
+.glitch-wrap{margin:.5rem 0 1rem;}
+.glitch{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,12vw,11rem);letter-spacing:6px;line-height:.88;display:block;position:relative;}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;}
+.glitch::before{color:var(--red);animation:glitch1 4s infinite;clip-path:polygon(0 20%,100% 20%,100% 40%,0 40%);}
+.glitch::after{color:var(--gold);animation:glitch2 4s infinite;clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);}
+@keyframes glitch1{0%,85%,100%{transform:translate(0);}87%{transform:translate(-5px,2px);}89%{transform:translate(5px,-2px);}91%{transform:translate(-3px,4px);}93%{transform:translate(4px,-3px);}95%{transform:translate(0);}}
+@keyframes glitch2{0%,82%,100%{transform:translate(0);}84%{transform:translate(5px,-3px);}86%{transform:translate(-4px,2px);}88%{transform:translate(3px,4px);}90%{transform:translate(-5px,-2px);}92%{transform:translate(0);}}
+.blink-red{color:var(--red);animation:blinkFlicker 2s step-start infinite;text-shadow:0 0 30px var(--red),0 0 60px rgba(204,0,0,.4);}
+@keyframes blinkFlicker{0%,100%{opacity:1;text-shadow:0 0 30px var(--red),0 0 60px rgba(204,0,0,.4);}45%{opacity:1;}50%{opacity:.05;text-shadow:none;}55%{opacity:1;text-shadow:0 0 30px var(--red);}70%{opacity:1;}72%{opacity:.3;}74%{opacity:1;}}
+.gold-glow{color:var(--gold);text-shadow:0 0 30px rgba(201,168,76,.6),0 0 60px rgba(201,168,76,.3);}
+
+.typewriter-wrap{font-family:'Share Tech Mono',monospace;font-size:1rem;color:rgba(245,240,232,.55);letter-spacing:2px;height:1.5rem;display:flex;align-items:center;justify-content:center;gap:.3rem;margin:.6rem 0 1.2rem;}
+.tw-cursor{display:inline-block;width:2px;height:1.1em;background:var(--red);animation:caretBlink .75s step-end infinite;}
+@keyframes caretBlink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+.hero-quote{font-family:'Special Elite',cursive;font-size:1rem;color:rgba(136,136,136,.8);font-style:italic;margin-bottom:1.8rem;animation:fadeUp .8s .5s ease both;opacity:0;animation-fill-mode:both;}
+
+.hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;animation:fadeUp .8s .6s ease both;opacity:0;animation-fill-mode:both;}
+.stat{text-align:center;}
+.stat .val{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--red);text-shadow:0 0 20px rgba(204,0,0,.5);display:block;animation:statPulse 2.5s ease-in-out infinite;}
+.stat:nth-child(2) .val{animation-delay:.4s;color:var(--gold);text-shadow:0 0 20px rgba(201,168,76,.5);}
+.stat:nth-child(3) .val{animation-delay:.8s;}
+.stat:nth-child(4) .val{animation-delay:1.2s;color:var(--gold);text-shadow:0 0 20px rgba(201,168,76,.5);}
+@keyframes statPulse{0%,100%{filter:brightness(1);}50%{filter:brightness(1.4);}}
+.stat .lbl{font-size:.6rem;letter-spacing:4px;color:var(--gray);text-transform:uppercase;margin-top:.6rem;display:block;}
+
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .8s ease both;opacity:0;animation-fill-mode:both;}
+.btn-primary{background:var(--red);color:#fff;padding:.9rem 2.5rem;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:4px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .25s;box-shadow:0 0 25px rgba(204,0,0,.5);position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);}
+.btn-primary:hover::before{transform:translateX(100%);transition:transform .5s;}
+.btn-primary:hover{background:var(--red2);box-shadow:0 0 55px rgba(255,17,17,.9);transform:translateY(-3px);}
+.btn-outline{background:transparent;color:var(--gold);padding:.9rem 2.5rem;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:4px;border:1px solid var(--gold);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .25s;}
+.btn-outline:hover{background:rgba(201,168,76,.1);box-shadow:0 0 30px rgba(201,168,76,.35);transform:translateY(-3px);}
+
+/* COUNTDOWN */
+.countdown{display:flex;gap:1rem;justify-content:center;margin-top:2rem;animation:fadeUp .8s 1s ease both;opacity:0;animation-fill-mode:both;}
+.cd-box{position:relative;min-width:80px;padding:1rem .8rem;text-align:center;border:1px solid rgba(204,0,0,.35);background:rgba(204,0,0,.05);overflow:hidden;}
+.cd-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);animation:scanDown 2s linear infinite;}
+@keyframes scanDown{0%{transform:translateY(0);}100%{transform:translateY(80px);}}
+.cd-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--red);display:block;text-shadow:0 0 15px rgba(204,0,0,.6);line-height:1;}
+.cd-lbl{font-size:.55rem;letter-spacing:4px;color:var(--gray);text-transform:uppercase;}
+
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--red));animation:scrollDrop 1.6s ease-in-out infinite;}
+@keyframes scrollDrop{0%{transform:scaleY(0) translateY(-100%);opacity:1;}100%{transform:scaleY(1) translateY(0);opacity:0;}}
+.scroll-txt{font-size:.55rem;letter-spacing:4px;color:var(--gray);text-transform:uppercase;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+/* GALLERY */
+.gallery-strip{display:flex;overflow:hidden;height:260px;position:relative;}
+.gallery-strip::before,.gallery-strip::after{content:'';position:absolute;top:0;bottom:0;width:180px;z-index:2;}
+.gallery-strip::before{left:0;background:linear-gradient(to right,var(--black),transparent);}
+.gallery-strip::after{right:0;background:linear-gradient(to left,var(--black),transparent);}
+.g-track{display:flex;gap:6px;animation:gScroll 35s linear infinite;}
+.g-track img{height:260px;width:400px;object-fit:cover;filter:brightness(.65) saturate(1.3);flex-shrink:0;transition:filter .4s;}
+.g-track img:hover{filter:brightness(.9) saturate(1.5);}
+@keyframes gScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* SECTIONS */
+section{padding:6rem 2rem;position:relative;}
+.container{max-width:1100px;margin:0 auto;}
+.sec-eyebrow{font-size:.62rem;letter-spacing:6px;color:var(--red);text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:.8rem;margin-bottom:.4rem;}
+.sec-eyebrow::before{content:'';width:28px;height:1px;background:var(--red);box-shadow:0 0 8px var(--red);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:4px;line-height:.9;margin-bottom:.8rem;}
+.sec-title .red{color:var(--red);text-shadow:0 0 20px rgba(204,0,0,.35);}
+.sec-title .gold{color:var(--gold);}
+.sec-bar{width:50px;height:3px;background:var(--red);box-shadow:0 0 10px var(--red);margin-bottom:3rem;}
+
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* OBJECTIVES */
+#objectives{background:var(--black2);}
+.obj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;}
+.obj-card{border:1px solid rgba(204,0,0,.12);padding:2rem;position:relative;background:rgba(204,0,0,.03);transition:all .35s;overflow:hidden;cursor:default;}
+.obj-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--red),transparent);box-shadow:2px 0 12px rgba(204,0,0,.3);}
+.obj-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(204,0,0,.07),transparent 60%);opacity:0;transition:opacity .3s;}
+.obj-card:hover{border-color:rgba(204,0,0,.45);transform:translateY(-6px);box-shadow:0 25px 50px rgba(204,0,0,.12);}
+.obj-card:hover::after{opacity:1;}
+.obj-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:rgba(204,0,0,.08);position:absolute;top:.3rem;right:1rem;line-height:1;transition:color .3s;}
+.obj-card:hover .obj-num{color:rgba(204,0,0,.18);}
+.obj-icon{font-size:2rem;margin-bottom:1rem;}
+.obj-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--gold);margin-bottom:.5rem;}
+.obj-desc{font-size:.88rem;color:var(--gray);line-height:1.7;}
+
+/* SCHEDULE */
+#schedule{background:var(--black);overflow:hidden;}
+#schedule::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80') center/cover no-repeat fixed;filter:brightness(.05) saturate(0);z-index:0;}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;position:relative;z-index:1;}
+@media(max-width:700px){.tl-grid{grid-template-columns:1fr;}}
+.tl-day{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:5px;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;}
+.tl-day::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.2);}
+.timeline{position:relative;padding-left:1.5rem;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--red),rgba(204,0,0,.05));}
+.tl-item{position:relative;margin-bottom:2rem;padding-left:1.5rem;}
+.tl-dot{position:absolute;left:-1.95rem;top:.3rem;width:10px;height:10px;background:var(--red);transform:rotate(45deg);box-shadow:0 0 10px var(--red),0 0 20px rgba(204,0,0,.4);animation:dotPulse 2s ease-in-out infinite;}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 10px var(--red),0 0 20px rgba(204,0,0,.4);}50%{box-shadow:0 0 15px var(--red),0 0 35px rgba(204,0,0,.6);}}
+.tl-time{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--gold);letter-spacing:2px;margin-bottom:.2rem;}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;color:var(--white);}
+.tl-desc{font-size:.84rem;color:var(--gray);line-height:1.5;}
+.tl-badge{display:inline-block;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;padding:.15rem .7rem;border:1px solid var(--red);color:var(--red);margin-top:.3rem;box-shadow:0 0 6px rgba(204,0,0,.25);}
+
+/* PRIZES */
+#prizes{background:var(--black2);position:relative;overflow:hidden;}
+#prizes::before{content:'VAULT';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:28vw;color:rgba(204,0,0,.025);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:10px;white-space:nowrap;}
+.prizes-grid{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:1.5rem;align-items:end;}
+@media(max-width:700px){.prizes-grid{grid-template-columns:1fr;}}
+.prize-card{border:1px solid rgba(255,255,255,.06);padding:2.5rem 2rem;text-align:center;background:var(--black);position:relative;overflow:hidden;transition:all .35s;}
+.prize-card:hover{transform:translateY(-8px);box-shadow:0 35px 70px rgba(0,0,0,.5);}
+.prize-card.gold-p{border-color:rgba(201,168,76,.35);background:linear-gradient(180deg,rgba(201,168,76,.07),var(--black));}
+.prize-card.gold-p::after{content:'GRAND PRIZE';position:absolute;top:14px;right:-28px;background:var(--gold);color:var(--black);font-size:.5rem;letter-spacing:2px;padding:.3rem 2.2rem;transform:rotate(45deg);font-weight:700;font-family:'Rajdhani',sans-serif;}
+.prize-rank{font-size:.6rem;letter-spacing:5px;color:var(--gray);text-transform:uppercase;margin-bottom:1rem;}
+.prize-icon{font-size:3.5rem;margin-bottom:1rem;display:block;animation:floatY 3s ease-in-out infinite;}
+.prize-card:nth-child(1) .prize-icon{animation-delay:.6s;}
+.prize-card:nth-child(3) .prize-icon{animation-delay:1.2s;}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.prize-amount{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--red);line-height:1;text-shadow:0 0 25px rgba(204,0,0,.4);}
+.prize-card.gold-p .prize-amount{color:var(--gold);text-shadow:0 0 25px rgba(201,168,76,.5);}
+.prize-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--white);margin:.4rem 0 1rem;}
+.prize-perks{list-style:none;}
+.prize-perks li{font-size:.84rem;color:var(--gray);padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:.5rem;text-align:left;}
+.prize-perks li::before{content:'▸';color:var(--red);font-size:.7rem;flex-shrink:0;}
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;}
+@media(max-width:700px){.sp-grid{grid-template-columns:repeat(2,1fr);}}
+.sp-card{border:1px solid rgba(201,168,76,.15);padding:1.2rem;text-align:center;background:rgba(201,168,76,.02);transition:all .3s;}
+.sp-card:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06);}
+.sp-amt{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);}
+.sp-name{font-size:.68rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-top:.3rem;line-height:1.4;}
+
+/* JUDGES */
+#judges{background:var(--black);position:relative;}
+#judges::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;filter:brightness(.04);z-index:0;}
+.judges-content{position:relative;z-index:1;}
+.judges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;}
+.judge-card{text-align:center;border:1px solid rgba(255,255,255,.05);padding:2.5rem 1.5rem;background:rgba(8,8,8,.88);transition:all .35s;position:relative;overflow:hidden;}
+.judge-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);transform:scaleX(0);transition:transform .4s;}
+.judge-card:hover::before{transform:scaleX(1);}
+.judge-card:hover{border-color:rgba(204,0,0,.3);transform:translateY(-6px);box-shadow:0 25px 50px rgba(0,0,0,.6);}
+.j-avatar{width:90px;height:90px;border-radius:50%;border:2px solid var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);position:relative;background:var(--black3);}
+.j-avatar::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(204,0,0,.3);animation:ringRot 4s linear infinite;}
+@keyframes ringRot{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.j-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+.j-role{font-size:.68rem;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin:.2rem 0;}
+.j-org{font-size:.8rem;color:var(--gray);}
+
+/* SPONSORS */
+#sponsors{background:var(--black2);}
+.sp-tier{font-size:.62rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.sp-tier::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.2);}
+.sp-row{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;}
+.sp-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1rem 2rem;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;color:var(--gray);transition:all .3s;cursor:default;}
+.sp-box:hover{border-color:rgba(204,0,0,.4);color:var(--white);box-shadow:0 0 20px rgba(204,0,0,.1);}
+.sp-box.plat{font-size:1.6rem;border-color:rgba(201,168,76,.25);color:var(--gold2);}
+.sp-box.plat:hover{box-shadow:0 0 25px rgba(201,168,76,.2);}
+.sp-cta{border:1px solid rgba(201,168,76,.2);padding:2rem;text-align:center;margin-top:2rem;background:rgba(201,168,76,.02);}
+.sp-cta p{font-family:'Special Elite',cursive;color:var(--gray);margin-bottom:.8rem;}
+.sp-cta a{color:var(--gold);font-size:.82rem;letter-spacing:3px;text-transform:uppercase;text-decoration:none;}
+
+/* FAQ */
+#faq{background:var(--black);}
+.faq-wrap{max-width:800px;margin:0 auto;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.05);}
+.faq-q{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1.1rem;color:var(--white);cursor:pointer;text-align:left;transition:color .2s;gap:1rem;}
+.faq-q:hover{color:var(--red);}
+.faq-icon{width:26px;height:26px;border:1px solid var(--red);display:flex;align-items:center;justify-content:center;color:var(--red);font-size:1.2rem;flex-shrink:0;transition:transform .3s,background .3s;font-family:'Share Tech Mono',monospace;}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--red);color:#fff;}
+.faq-a{max-height:0;overflow:hidden;font-size:.88rem;color:var(--gray);line-height:1.7;transition:max-height .4s ease,padding .3s;}
+.faq-item.open .faq-a{max-height:250px;padding-bottom:1.2rem;}
+
+/* REGISTER */
+#register{background:var(--black2);position:relative;overflow:hidden;}
+#register::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80') center/cover no-repeat;filter:brightness(.07) saturate(1.5);}
+#register::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(204,0,0,.14),transparent 70%);}
+.reg-inner{position:relative;z-index:1;text-align:center;max-width:650px;margin:0 auto;}
+.reg-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,7.5rem);letter-spacing:5px;line-height:.9;margin-bottom:1rem;}
+.blink-gold{animation:blinkG 1.5s step-start infinite;color:var(--gold);}
+@keyframes blinkG{0%,100%{color:var(--gold);text-shadow:0 0 25px var(--gold);}50%{color:rgba(201,168,76,.08);text-shadow:none;}}
+.reg-sub{font-family:'Special Elite',cursive;color:var(--gray);margin-bottom:2rem;font-size:1rem;font-style:italic;}
+.reg-form{display:flex;flex-direction:column;gap:.9rem;max-width:440px;margin:0 auto;}
+.reg-form input,.reg-form select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--white);padding:.9rem 1.2rem;font-family:'Rajdhani',sans-serif;font-size:1rem;outline:none;transition:border-color .2s;}
+.reg-form input:focus,.reg-form select:focus{border-color:var(--red);box-shadow:0 0 15px rgba(204,0,0,.15);}
+.reg-form input::placeholder{color:rgba(245,240,232,.22);}
+.reg-form select option{background:var(--black);}
+.reg-submit{background:var(--red);color:#fff;border:none;padding:1.1rem;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:5px;cursor:pointer;transition:all .25s;box-shadow:0 0 30px rgba(204,0,0,.4);position:relative;overflow:hidden;}
+.reg-submit::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:translateX(-100%);}
+.reg-submit:hover::before{transform:translateX(100%);transition:transform .5s;}
+.reg-submit:hover{background:var(--red2);box-shadow:0 0 60px rgba(255,17,17,.8);}
+.reg-note{font-size:.72rem;color:rgba(136,136,136,.6);margin-top:.8rem;}
+#reg-success{display:none;padding:3rem 2rem;text-align:center;}
+.suc-title{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--gold);letter-spacing:4px;animation:blinkG 1s step-start 6;}
+.suc-sub{color:var(--gray);margin-top:.5rem;}
+
+/* FOOTER */
+footer{background:var(--black);padding:4rem 2rem;text-align:center;position:relative;}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);box-shadow:0 0 10px var(--red);}
+.ft-mask{font-size:5rem;opacity:.2;margin-bottom:1rem;animation:maskFlicker 5s step-start infinite;}
+@keyframes maskFlicker{0%,95%,100%{opacity:.2;}96%{opacity:.5;}97%{opacity:.1;}98%{opacity:.4;}}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);letter-spacing:5px;text-shadow:0 0 20px rgba(204,0,0,.5);}
+.ft-logo span{color:var(--gold);}
+.ft-tag{font-family:'Special Elite',cursive;color:var(--gray);font-size:.88rem;margin:.5rem 0 2rem;font-style:italic;}
+.ft-links{display:flex;gap:2.5rem;justify-content:center;list-style:none;margin-bottom:2rem;flex-wrap:wrap;}
+.ft-links a{color:var(--gray);text-decoration:none;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}
+.ft-links a:hover{color:var(--red);}
+.ft-copy{font-size:.68rem;color:rgba(136,136,136,.35);}
+
+@media(max-width:768px){nav{padding:.85rem 1.5rem;}.nav-links{display:none;}.hero-stats{gap:1.5rem;}.stat .val{font-size:2.2rem;}.countdown{gap:.6rem;}.cd-box{min-width:60px;padding:.7rem;}.cd-num{font-size:2rem;}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">HACK<span>X</span></div>
+  <ul class="nav-links">
+    <li><a href="#objectives">Mission</a></li>
+    <li><a href="#schedule">Timeline</a></li>
+    <li><a href="#prizes">Loot</a></li>
+    <li><a href="#judges">Council</a></li>
+    <li><a href="#sponsors">Backers</a></li>
+    <li><a href="#faq">Intel</a></li>
+  </ul>
+  <a href="#register" class="nav-cta">&#128275; Join the Heist</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-scanlines"></div>
+
+  <div class="hero-content">
+    <div class="hero-ticker">
+      <div class="ticker-dot"></div>
+      INITIATING PROTOCOL X &nbsp;|&nbsp; AUG 15–17, 2025 &nbsp;|&nbsp; SURAT, GUJARAT &nbsp;|&nbsp; AI &amp; INNOVATION
+      <div class="ticker-dot"></div>
+    </div>
+
+    <div class="glitch-wrap">
+      <span class="glitch" data-text="HACK">HACK</span>
+      <span class="glitch blink-red" data-text="THE" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,12vw,11rem);letter-spacing:6px;display:block;line-height:.88;position:relative;">THE</span>
+      <span class="glitch gold-glow" data-text="SYSTEM">SYSTEM</span>
+    </div>
+
+    <div class="typewriter-wrap">
+      <span id="tw-text"></span><span class="tw-cursor"></span>
+    </div>
+
+    <p class="hero-quote">"Every great revolution starts with a single line of code."</p>
+
+    <div class="hero-stats">
+      <div class="stat"><span class="val" id="s1">48</span><span class="lbl">Hours</span></div>
+      <div class="stat"><span class="val" id="s2">₹5L+</span><span class="lbl">In Prizes</span></div>
+      <div class="stat"><span class="val" id="s3">500+</span><span class="lbl">Hackers</span></div>
+      <div class="stat"><span class="val" id="s4">30+</span><span class="lbl">Mentors</span></div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#register" class="btn-primary">&#128275; Execute Plan</a>
+      <a href="#schedule" class="btn-outline">&#128196; View Dossier</a>
+    </div>
+
+    <div class="countdown">
+      <div class="cd-box"><span class="cd-num" id="cd-d">00</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">Hrs</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">Min</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">Sec</span></div>
+    </div>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span class="scroll-txt">Scroll</span>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-strip">
+  <div class="g-track" id="gTrack">
+    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=70" alt="bank"/>
+    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=70" alt="code"/>
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=70" alt="cyber"/>
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=70" alt="circuit"/>
+    <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=70" alt="hack"/>
+    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=70" alt="bank"/>
+    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=70" alt="code"/>
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=70" alt="cyber"/>
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=70" alt="circuit"/>
+    <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=70" alt="hack"/>
+  </div>
+</div>
+
+<!-- OBJECTIVES -->
+<section id="objectives">
+  <div class="container">
+    <div class="reveal"><div class="sec-eyebrow">The Mission</div><h2 class="sec-title">OUR <span class="red">OBJECTIVES</span></h2><div class="sec-bar"></div></div>
+    <div class="obj-grid">
+      <div class="obj-card reveal"><div class="obj-num">01</div><div class="obj-icon">&#129504;</div><div class="obj-name">Build AI Solutions</div><p class="obj-desc">Create real-world AI applications tackling community challenges — healthcare, education, sustainability &amp; governance.</p></div>
+      <div class="obj-card reveal" style="transition-delay:.1s"><div class="obj-num">02</div><div class="obj-icon">&#128101;</div><div class="obj-name">Foster Collaboration</div><p class="obj-desc">Break silos. Unite developers, designers &amp; domain experts into unstoppable cross-functional squads.</p></div>
+      <div class="obj-card reveal" style="transition-delay:.2s"><div class="obj-num">03</div><div class="obj-icon">&#128161;</div><div class="obj-name">Drive Innovation</div><p class="obj-desc">Push beyond the obvious. Experiment, iterate and prototype bold ideas that reshape industries.</p></div>
+      <div class="obj-card reveal" style="transition-delay:.3s"><div class="obj-num">04</div><div class="obj-icon">&#127760;</div><div class="obj-name">Create Impact</div><p class="obj-desc">Build solutions with measurable, lasting social and economic impact. Code that doesn't just run — it matters.</p></div>
+      <div class="obj-card reveal" style="transition-delay:.4s"><div class="obj-num">05</div><div class="obj-icon">&#127891;</div><div class="obj-name">Learn &amp; Grow</div><p class="obj-desc">Expert workshops, mentoring &amp; talks. Leave sharper, more connected and ready for what's next.</p></div>
+      <div class="obj-card reveal" style="transition-delay:.5s"><div class="obj-num">06</div><div class="obj-icon">&#128200;</div><div class="obj-name">Launch Ventures</div><p class="obj-desc">Top teams connect with investors &amp; incubators to take their MVPs to market.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="reveal"><div class="sec-eyebrow">The Plan</div><h2 class="sec-title">48-HOUR <span class="red">TIMELINE</span></h2><div class="sec-bar"></div></div>
+    <div class="tl-grid">
+      <div>
+        <div class="tl-day">DAY 1 — AUGUST 15</div>
+        <div class="timeline">
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">09:00 AM</div><div class="tl-title">Registration Opens</div><p class="tl-desc">Check in, collect your kit, meet your crew.</p></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">10:30 AM</div><div class="tl-title">Opening Ceremony</div><p class="tl-desc">Keynote address &amp; problem statements revealed.</p><span class="tl-badge">Keynote</span></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">12:00 PM</div><div class="tl-title">Hacking Begins</div><p class="tl-desc">Clock starts. Execute the mission.</p><span class="tl-badge" style="border-color:var(--gold);color:var(--gold);">&#9632; LIVE</span></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">03:00 PM</div><div class="tl-title">Workshop: AI/ML</div><p class="tl-desc">Hands-on with LLMs, APIs &amp; datasets.</p></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">08:00 PM</div><div class="tl-title">Mentor Connect</div><p class="tl-desc">1:1 office hours with industry experts.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="tl-day">DAY 2–3 — AUG 16-17</div>
+        <div class="timeline">
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">12:00 AM</div><div class="tl-title">Midnight Surge</div><p class="tl-desc">Energy drinks, snacks &amp; motivation.</p></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">10:00 AM</div><div class="tl-title">Progress Check-in</div><p class="tl-desc">Quick 2-min team stand-ups with mentors.</p></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">11:00 AM</div><div class="tl-title">Submission Deadline</div><p class="tl-desc">GitHub repos locked. Decks submitted.</p><span class="tl-badge">Deadline</span></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">01:00 PM</div><div class="tl-title">Final Presentations</div><p class="tl-desc">Top 10 teams pitch to the judges.</p><span class="tl-badge">Grand Stage</span></div>
+          <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-time">04:00 PM</div><div class="tl-title">Awards Ceremony</div><p class="tl-desc">Winners crowned. The heist is complete.</p><span class="tl-badge" style="border-color:var(--gold);color:var(--gold);">&#9733; Victory</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIZES -->
+<section id="prizes">
+  <div class="container">
+    <div class="reveal" style="text-align:center;"><div class="sec-eyebrow" style="justify-content:center;">The Loot</div><h2 class="sec-title">PRIZE <span class="red">VAULT</span></h2><div class="sec-bar" style="margin:0 auto 3rem;"></div></div>
+    <div class="prizes-grid">
+      <div class="prize-card reveal"><div class="prize-rank">Second Place</div><span class="prize-icon">&#129352;</span><div class="prize-amount">₹75K</div><div class="prize-name">Silver Mask</div><ul class="prize-perks"><li>Cash Prize</li><li>Internship Opportunities</li><li>Premium Swag Kit</li><li>Certificate of Excellence</li></ul></div>
+      <div class="prize-card gold-p reveal"><div class="prize-rank">First Place</div><span class="prize-icon">&#129351;</span><div class="prize-amount">₹1.5L</div><div class="prize-name">Golden Mask</div><ul class="prize-perks"><li>Grand Cash Prize</li><li>VC Pitch Opportunity</li><li>6-Month Incubation</li><li>Media Feature &amp; PR</li><li>Exclusive Mentorship</li></ul></div>
+      <div class="prize-card reveal"><div class="prize-rank">Third Place</div><span class="prize-icon">&#129353;</span><div class="prize-amount">₹40K</div><div class="prize-name">Bronze Mask</div><ul class="prize-perks"><li>Cash Prize</li><li>Freelance Referrals</li><li>Swag Kit</li><li>Certificate of Merit</li></ul></div>
+    </div>
+    <div class="sp-grid reveal">
+      <div class="sp-card"><div class="sp-amt">₹25K</div><div class="sp-name">Best AI for Social Good</div></div>
+      <div class="sp-card"><div class="sp-amt">₹20K</div><div class="sp-name">Best Student Team</div></div>
+      <div class="sp-card"><div class="sp-amt">₹15K</div><div class="sp-name">Most Innovative AI</div></div>
+      <div class="sp-card"><div class="sp-amt">₹10K</div><div class="sp-name">People's Choice</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JUDGES -->
+<section id="judges">
+  <div class="judges-content container">
+    <div class="reveal"><div class="sec-eyebrow">The Council</div><h2 class="sec-title">JUDGES &amp; <span class="red">MENTORS</span></h2><div class="sec-bar"></div></div>
+    <div class="judges-grid">
+      <div class="judge-card reveal"><div class="j-avatar">AP</div><div class="j-name">Arjun Patel</div><div class="j-role">Chief Judge</div><div class="j-org">CTO, TechVentures India</div></div>
+      <div class="judge-card reveal" style="transition-delay:.1s"><div class="j-avatar">SR</div><div class="j-name">Sneha Rao</div><div class="j-role">AI Lead Judge</div><div class="j-org">Research Director, Google DeepMind</div></div>
+      <div class="judge-card reveal" style="transition-delay:.2s"><div class="j-avatar">MK</div><div class="j-name">Mihir Kapoor</div><div class="j-role">Industry Judge</div><div class="j-org">Partner, Nexus Ventures</div></div>
+      <div class="judge-card reveal" style="transition-delay:.3s"><div class="j-avatar">PD</div><div class="j-name">Priya Desai</div><div class="j-role">Impact Judge</div><div class="j-org">Founder, ImpactAI Foundation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section id="sponsors">
+  <div class="container">
+    <div class="reveal"><div class="sec-eyebrow">The Backers</div><h2 class="sec-title">OUR <span class="gold">SPONSORS</span></h2><div class="sec-bar" style="background:var(--gold);box-shadow:0 0 10px var(--gold);"></div></div>
+    <div class="reveal">
+      <div class="sp-tier">Platinum Partners</div>
+      <div class="sp-row"><div class="sp-box plat">NEXUS CORP</div><div class="sp-box plat">AXIOM AI</div></div>
+      <div class="sp-tier">Gold Partners</div>
+      <div class="sp-row"><div class="sp-box">DEVFORGE</div><div class="sp-box">CLOUDBASE</div><div class="sp-box">SYNTHAI</div></div>
+      <div class="sp-tier">Community Partners</div>
+      <div class="sp-row"><div class="sp-box" style="font-size:.9rem">TECHSURAT</div><div class="sp-box" style="font-size:.9rem">STARTUPGUJ</div><div class="sp-box" style="font-size:.9rem">IEEE CHAPTER</div><div class="sp-box" style="font-size:.9rem">MLSA INDIA</div><div class="sp-box" style="font-size:.9rem">GDG SURAT</div></div>
+    </div>
+    <div class="sp-cta reveal"><p>"Want to back the next generation of innovators? Join the resistance."</p><a href="mailto:sponsor@hackx.dev">sponsor@hackx.dev</a></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal"><div class="sec-eyebrow">Intel Briefing</div><h2 class="sec-title">NEED TO <span class="red">KNOW</span></h2><div class="sec-bar"></div></div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Who can participate?<span class="faq-icon">+</span></button><div class="faq-a">Anyone passionate about tech! Open to students, professionals &amp; entrepreneurs. All skill levels welcome. No background restrictions.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Team size?<span class="faq-icon">+</span></button><div class="faq-a">Teams of 2–4 members. Solo participation allowed. We run a team-formation session before the event. Diverse teams tend to win.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Is there a registration fee?<span class="faq-icon">+</span></button><div class="faq-a">Completely FREE. Meals, snacks &amp; sleeping areas during the 48-hour heist are all provided. Just bring your laptop and ambition.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What should we build?<span class="faq-icon">+</span></button><div class="faq-a">Anything that uses AI &amp; Innovation to solve a real problem. Tracks include healthcare AI, EdTech, smart cities, AgriTech &amp; open innovation. Problem statements revealed at ceremony.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Can we start before the event?<span class="faq-icon">+</span></button><div class="faq-a">Pre-built projects are not allowed. All work must be done during the 48-hour window. You CAN study tech, plan strategy &amp; setup your dev environment in advance.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What tools &amp; APIs can we use?<span class="faq-icon">+</span></button><div class="faq-a">All open-source tools, free APIs &amp; sponsor-provided API credits. Cloud compute credits from sponsors available. Full resource list shared post-registration.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section id="register">
+  <div class="container">
+    <div class="reg-inner">
+      <div class="reveal">
+        <div class="sec-eyebrow" style="justify-content:center;">Join the Resistance</div>
+        <h2 class="reg-big"><span style="color:var(--white);">REGISTER</span><br/><span class="blink-gold">NOW</span></h2>
+        <p class="reg-sub">"The system won't hack itself. Spots are limited. Move fast."</p>
+      </div>
+      <form class="reg-form reveal" onsubmit="handleReg(event)">
+        <input type="text" placeholder="Full Name" required/>
+        <input type="email" placeholder="Email Address" required/>
+        <input type="text" placeholder="College / Organization" required/>
+        <select required>
+          <option value="" disabled selected>Select Your Role</option>
+          <option>Student — Engineering</option>
+          <option>Student — Other</option>
+          <option>Working Professional</option>
+          <option>Entrepreneur / Founder</option>
+          <option>Designer / Creative</option>
+          <option>Other</option>
+        </select>
+        <select required>
+          <option value="" disabled selected>Track of Interest</option>
+          <option>Healthcare AI</option>
+          <option>EdTech &amp; Learning</option>
+          <option>Smart Cities</option>
+          <option>AgriTech</option>
+          <option>FinTech AI</option>
+          <option>Open Innovation</option>
+        </select>
+        <button type="submit" class="reg-submit">&#128275; EXECUTE REGISTRATION</button>
+        <p class="reg-note">&#9632; By registering you agree to the code of conduct. Confirmation within 48 hours.</p>
+      </form>
+      <div id="reg-success"><div class="suc-title">YOU'RE IN THE CREW.</div><p class="suc-sub">Check your email. Welcome to the resistance. &#128983;</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-mask">&#127928;</div>
+  <div class="ft-logo">HACK<span>X</span> 2025</div>
+  <p class="ft-tag">"Every great heist needs a plan. Every great plan needs you."</p>
+  <ul class="ft-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#objectives">Mission</a></li>
+    <li><a href="#schedule">Timeline</a></li>
+    <li><a href="#prizes">Prizes</a></li>
+    <li><a href="#judges">Judges</a></li>
+    <li><a href="#register">Register</a></li>
+  </ul>
+  <p class="ft-copy">&copy; 2025 HackX Community &nbsp;|&nbsp; Surat, Gujarat, India</p>
+</footer>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function animC(){cx+=(mx-cx)*.14;cy+=(my-cy)*.14;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(animC);})();
+document.querySelectorAll('a,button,.obj-card,.judge-card,.prize-card,.sp-box').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.2)';cur.style.borderColor='var(--gold)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.borderColor='var(--red)';});
+});
+
+/* PARTICLES */
+const pc=document.getElementById('particles');
+for(let i=0;i<70;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  const isGold=Math.random()<.3;
+  const sz=Math.random()<.2?3:Math.random()<.5?2:1;
+  p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${7+Math.random()*14}s;animation-delay:${Math.random()*12}s;background:${isGold?'var(--gold)':'var(--red)'};opacity:0;`;
+  pc.appendChild(p);
+}
+
+/* TYPEWRITER */
+const phrases=['> Initializing HackX Protocol...','> 48 Hours. Unlimited Ambition.','> AI & Innovation Summit 2025','> Build. Break. Innovate. Repeat.','> Your code could change everything.','> La Casa de Código.'];
+let pi=0,ci=0,del=false,tw=document.getElementById('tw-text');
+function type(){
+  const ph=phrases[pi];
+  if(!del){tw.textContent=ph.slice(0,++ci);if(ci===ph.length){del=true;setTimeout(type,2200);return;}}
+  else{tw.textContent=ph.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(type,del?38:72);
+}
+setTimeout(type,1600);
+
+/* COUNTDOWN */
+function tick(){
+  const t=new Date('2025-08-15T09:00:00'),now=new Date(),diff=t-now;
+  if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* SCROLL REVEAL */
+const revEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:.1});
+revEls.forEach(el=>ro.observe(el));
+
+/* FAQ */
+function toggleFaq(btn){
+  const item=btn.parentElement,open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+
+/* REGISTER */
+function handleReg(e){
+  e.preventDefault();
+  document.querySelector('.reg-form').style.display='none';
+  document.getElementById('reg-success').style.display='block';
+}
+
+/* NAV HIGHLIGHT */
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.id;});
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--red)':'';});
+},{passive:true});
+
+/* RANDOM GLITCH FLASH */
+setInterval(()=>{
+  const gl=document.querySelectorAll('.glitch');
+  const el=gl[Math.floor(Math.random()*gl.length)];
+  el.style.textShadow='4px 0 var(--red), -4px 0 var(--gold)';
+  setTimeout(()=>el.style.textShadow='',120);
+},3000);
+</script>
+</body>
+</html>
