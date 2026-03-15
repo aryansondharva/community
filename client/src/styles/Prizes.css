@@ -1,0 +1,180 @@
+/* PRIZES */
+#prizes {
+  background: var(--black2);
+  position: relative;
+  overflow: hidden;
+}
+
+#prizes::before {
+  content: 'VAULT';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28vw;
+  color: rgba(204, 0, 0, .025);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  letter-spacing: 10px;
+  white-space: nowrap;
+}
+
+.prizes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+@media(max-width: 700px) {
+  .prizes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prize-card {
+  border: 1px solid rgba(255, 255, 255, .06);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  transition: all .35s;
+}
+
+.prize-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, .5);
+}
+
+.prize-card.gold-p {
+  border-color: rgba(201, 168, 76, .35);
+  background: linear-gradient(180deg, rgba(201, 168, 76, .07), var(--black));
+}
+
+.prize-card.gold-p::after {
+  content: 'GRAND PRIZE';
+  position: absolute;
+  top: 14px;
+  right: -28px;
+  background: var(--gold);
+  color: var(--black);
+  font-size: .5rem;
+  letter-spacing: 2px;
+  padding: .3rem 2.2rem;
+  transform: rotate(45deg);
+  font-weight: 700;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.prize-rank {
+  font-size: .6rem;
+  letter-spacing: 5px;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.prize-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  animation: floatY 3s ease-in-out infinite;
+}
+
+.prize-card:nth-child(1) .prize-icon {
+  animation-delay: .6s;
+}
+
+.prize-card:nth-child(3) .prize-icon {
+  animation-delay: 1.2s;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.prize-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  color: var(--red);
+  line-height: 1;
+  text-shadow: 0 0 25px rgba(204, 0, 0, .4);
+}
+
+.prize-card.gold-p .prize-amount {
+  color: var(--gold);
+  text-shadow: 0 0 25px rgba(201, 168, 76, .5);
+}
+
+.prize-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: var(--white);
+  margin: .4rem 0 1rem;
+}
+
+.prize-perks {
+  list-style: none;
+}
+
+.prize-perks li {
+  font-size: .84rem;
+  color: var(--gray);
+  padding: .3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .04);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  text-align: left;
+}
+
+.prize-perks li::before {
+  content: '▸';
+  color: var(--red);
+  font-size: .7rem;
+  flex-shrink: 0;
+}
+
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media(max-width: 700px) {
+  .sp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sp-card {
+  border: 1px solid rgba(201, 168, 76, .15);
+  padding: 1.2rem;
+  text-align: center;
+  background: rgba(201, 168, 76, .02);
+  transition: all .3s;
+}
+
+.sp-card:hover {
+  border-color: rgba(201, 168, 76, .4);
+  background: rgba(201, 168, 76, .06);
+}
+
+.sp-amt {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--gold);
+}
+
+.sp-name {
+  font-size: .68rem;
+  letter-spacing: 2px;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-top: .3rem;
+  line-height: 1.4;
+}

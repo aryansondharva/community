@@ -1,0 +1,84 @@
+/* OBJECTIVES */
+#objectives {
+  background: var(--black2);
+}
+
+.obj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.obj-card {
+  border: 1px solid rgba(204, 0, 0, .12);
+  padding: 2rem;
+  position: relative;
+  background: rgba(204, 0, 0, .03);
+  transition: all .35s;
+  overflow: hidden;
+  cursor: default;
+}
+
+.obj-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  box-shadow: 2px 0 12px rgba(204, 0, 0, .3);
+}
+
+.obj-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(204, 0, 0, .07), transparent 60%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.obj-card:hover {
+  border-color: rgba(204, 0, 0, .45);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(204, 0, 0, .12);
+}
+
+.obj-card:hover::after {
+  opacity: 1;
+}
+
+.obj-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  color: rgba(204, 0, 0, .08);
+  position: absolute;
+  top: .3rem;
+  right: 1rem;
+  line-height: 1;
+  transition: color .3s;
+}
+
+.obj-card:hover .obj-num {
+  color: rgba(204, 0, 0, .18);
+}
+
+.obj-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.obj-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: .5rem;
+}
+
+.obj-desc {
+  font-size: .88rem;
+  color: var(--gray);
+  line-height: 1.7;
+}

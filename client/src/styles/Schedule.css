@@ -1,0 +1,117 @@
+/* SCHEDULE */
+#schedule {
+  background: var(--black);
+  overflow: hidden;
+}
+
+#schedule::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80') center/cover no-repeat fixed;
+  filter: brightness(.05) saturate(0);
+  z-index: 0;
+}
+
+.tl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media(max-width: 700px) {
+  .tl-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tl-day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .85rem;
+  letter-spacing: 5px;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.tl-day::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(201, 168, 76, .2);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--red), rgba(204, 0, 0, .05));
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.tl-dot {
+  position: absolute;
+  left: -1.95rem;
+  top: .3rem;
+  width: 10px;
+  height: 10px;
+  background: var(--red);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px var(--red), 0 0 20px rgba(204, 0, 0, .4);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 10px var(--red), 0 0 20px rgba(204, 0, 0, .4); }
+  50% { box-shadow: 0 0 15px var(--red), 0 0 35px rgba(204, 0, 0, .6); }
+}
+
+.tl-time {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .72rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: .2rem;
+}
+
+.tl-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+
+.tl-desc {
+  font-size: .84rem;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.tl-badge {
+  display: inline-block;
+  font-size: .58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: .15rem .7rem;
+  border: 1px solid var(--red);
+  color: var(--red);
+  margin-top: .3rem;
+  box-shadow: 0 0 6px rgba(204, 0, 0, .25);
+}
