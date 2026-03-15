@@ -1,5 +1,6 @@
 import React from 'react';
-import { useTypewriter, useCountdown } from '../hooks';
+import { useTypewriter } from '../hooks/useTypewriter';
+import { useCountdown } from '../hooks/useCountdown';
 import '../styles/Hero.css';
 
 const Hero = () => {

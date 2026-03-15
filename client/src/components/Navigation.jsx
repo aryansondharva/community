@@ -1,5 +1,5 @@
 import React from 'react';
-import './Navigation.css';
+import '../styles/global.css';
 
 const Navigation = () => {
   const scrollToSection = (sectionId) => {

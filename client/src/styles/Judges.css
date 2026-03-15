@@ -1,0 +1,106 @@
+/* JUDGES */
+#judges {
+  background: var(--black);
+  position: relative;
+}
+
+#judges::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+  filter: brightness(.04);
+  z-index: 0;
+}
+
+.judges-content {
+  position: relative;
+  z-index: 1;
+}
+
+.judges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.judge-card {
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, .05);
+  padding: 2.5rem 1.5rem;
+  background: rgba(8, 8, 8, .88);
+  transition: all .35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.judge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  transform: scaleX(0);
+  transition: transform .4s;
+}
+
+.judge-card:hover::before {
+  transform: scaleX(1);
+}
+
+.judge-card:hover {
+  border-color: rgba(204, 0, 0, .3);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, .6);
+}
+
+.j-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--white);
+  position: relative;
+  background: var(--black3);
+}
+
+.j-avatar::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(204, 0, 0, .3);
+  animation: ringRot 4s linear infinite;
+}
+
+@keyframes ringRot {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.j-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+.j-role {
+  font-size: .68rem;
+  color: var(--red);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: .2rem 0;
+}
+
+.j-org {
+  font-size: .8rem;
+  color: var(--gray);
+}

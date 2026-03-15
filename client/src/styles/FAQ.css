@@ -1,0 +1,69 @@
+/* FAQ */
+#faq {
+  background: var(--black);
+}
+
+.faq-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+}
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--white);
+  cursor: pointer;
+  text-align: left;
+  transition: color .2s;
+  gap: 1rem;
+}
+
+.faq-q:hover {
+  color: var(--red);
+}
+
+.faq-icon {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: transform .3s, background .3s;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--red);
+  color: #fff;
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  font-size: .88rem;
+  color: var(--gray);
+  line-height: 1.7;
+  transition: max-height .4s ease, padding .3s;
+}
+
+.faq-item.open .faq-a {
+  max-height: 250px;
+  padding-bottom: 1.2rem;
+}
