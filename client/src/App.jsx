@@ -61,18 +61,33 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Random glitch flash effect
+  // Random glitch flash effect - more frequent and intense
   useEffect(() => {
     const glitchInterval = setInterval(() => {
       const glitchElements = document.querySelectorAll('.glitch');
-      const randomElement = glitchElements[Math.floor(Math.random() * glitchElements.length)];
-      if (randomElement) {
-        randomElement.style.textShadow = '4px 0 var(--red), -4px 0 var(--gold)';
-        setTimeout(() => {
-          randomElement.style.textShadow = '';
-        }, 120);
+      if (glitchElements.length > 0) {
+        const randomElement = glitchElements[Math.floor(Math.random() * glitchElements.length)];
+        if (randomElement) {
+          // More intense glitch effects
+          const glitchEffects = [
+            '4px 0 var(--red), -4px 0 var(--gold), 8px 0 var(--red2)',
+            '-6px 0 var(--gold), 6px 0 var(--red), -12px 0 var(--gold2)',
+            '10px 0 var(--red), -10px 0 var(--gold), 0 0 20px var(--red)',
+            '-8px 0 var(--gold2), 8px 0 var(--red2), 0 0 30px var(--gold)',
+            '12px 0 var(--red), -12px 0 var(--gold), 4px 0 var(--red2)'
+          ];
+          
+          const randomEffect = glitchEffects[Math.floor(Math.random() * glitchEffects.length)];
+          randomElement.style.textShadow = randomEffect;
+          randomElement.style.transform = `skewX(${Math.random() * 6 - 3}deg)`;
+          
+          setTimeout(() => {
+            randomElement.style.textShadow = '';
+            randomElement.style.transform = '';
+          }, Math.random() * 200 + 100); // Random duration between 100-300ms
+        }
       }
-    }, 3000);
+    }, 1500); // Reduced from 3000ms to 1500ms for more frequent glitches
 
     return () => clearInterval(glitchInterval);
   }, []);
