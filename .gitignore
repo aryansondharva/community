@@ -22,6 +22,7 @@ yarn-error.log*
 *.swo
 *~
 
+
 # OS generated files
 .DS_Store
 .DS_Store?
@@ -89,3 +90,10 @@ jspm_packages/
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# Original project files
+index.html
+
+
+start.bat
+start.sh
