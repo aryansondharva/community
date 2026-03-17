@@ -1,0 +1,189 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light Mode - Modern Professional */
+  --background: 255 255 255;
+  --foreground: 15 23 42;
+  --card: 249 250 251;
+  --card-foreground: 15 23 42;
+  --popover: 255 255 255;
+  --popover-foreground: 15 23 42;
+  --primary: 99 102 241;
+  --primary-foreground: 255 255 255;
+  --secondary: 139 92 246;
+  --secondary-foreground: 255 255 255;
+  --muted: 226 232 240;
+  --muted-foreground: 100 116 139;
+  --accent: 34 197 94;
+  --accent-foreground: 255 255 255;
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+  --border: 226 232 240;
+  --input: 243 244 246;
+  --ring: 99 102 241;
+  --chart-1: 99 102 241;
+  --chart-2: 139 92 246;
+  --chart-3: 34 197 94;
+  --chart-4: 239 68 68;
+  --chart-5: 245 158 11;
+  --radius: 0.75rem;
+  --sidebar: 248 250 252;
+  --sidebar-foreground: 15 23 42;
+  --sidebar-primary: 99 102 241;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 139 92 246;
+  --sidebar-accent-foreground: 255 255 255;
+  --sidebar-border: 226 232 240;
+  --sidebar-ring: 99 102 241;
+}
+
+.dark {
+  --background: 10 15 30;
+  --foreground: 248 249 250;
+  --card: 20 28 50;
+  --card-foreground: 248 249 250;
+  --popover: 20 28 50;
+  --popover-foreground: 248 249 250;
+  --primary: 129 140 248;
+  --primary-foreground: 10 15 30;
+  --secondary: 167 139 250;
+  --secondary-foreground: 10 15 30;
+  --muted: 30 41 82;
+  --muted-foreground: 148 163 184;
+  --accent: 52 211 153;
+  --accent-foreground: 10 15 30;
+  --destructive: 248 113 113;
+  --destructive-foreground: 10 15 30;
+  --border: 30 41 82;
+  --input: 30 41 82;
+  --ring: 129 140 248;
+  --chart-1: 129 140 248;
+  --chart-2: 167 139 250;
+  --chart-3: 52 211 153;
+  --chart-4: 248 113 113;
+  --chart-5: 250 204 21;
+  --sidebar: 15 23 42;
+  --sidebar-foreground: 248 249 250;
+  --sidebar-primary: 129 140 248;
+  --sidebar-primary-foreground: 10 15 30;
+  --sidebar-accent: 167 139 250;
+  --sidebar-accent-foreground: 10 15 30;
+  --sidebar-border: 30 41 82;
+  --sidebar-ring: 129 140 248;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-green-500 dark:from-indigo-400 dark:via-purple-400 dark:to-green-400 bg-clip-text text-transparent;
+  }
+
+  /* Card with hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:scale-105;
+  }
+
+  /* Button base */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-indigo-950;
+  }
+
+  /* Badge styles */
+  .badge-primary {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200;
+  }
+
+  .badge-success {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200;
+  }
+
+  .badge-purple {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-semibold bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200;
+  }
+
+  /* Blur background for modals */
+  .backdrop-blur-sm {
+    @apply backdrop-blur-sm;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
