@@ -1,5 +1,4 @@
 # HackHub Server API
-
 A comprehensive backend API for the HackHub platform, providing authentication, file uploads, real-time updates, search functionality, and email notifications.
 
 ## Features
