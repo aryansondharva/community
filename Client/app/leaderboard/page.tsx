@@ -142,9 +142,9 @@ export default function LeaderboardPage() {
       <Navbar />
 
       {/* Header Section with Gradient Background */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden border-b-2 border-gray-200">
         {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gray-800" />
+        <div className="absolute inset-0 bg-white" />
         
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center mb-8">
@@ -152,12 +152,12 @@ export default function LeaderboardPage() {
             <div className="flex items-center justify-center gap-3 mb-6">
               
               
-              <h1 className="text-5xl sm:text-6xl font-bold text-white">
+              <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Leaderboard
               </h1>
              
             </div>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Compete, achieve, and climb the ranks. See where you stand in the community.
             </p>
           </div>
@@ -217,10 +217,10 @@ export default function LeaderboardPage() {
       </section>
 
       {/* Leaderboard Table */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           {/* Desktop View */}
-          <div className="hidden md:block rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-2xl overflow-hidden">
+          <div className="hidden md:block rounded-2xl border-2 border-gray-300 bg-white shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="border-b border-border/50 bg-gradient-to-r from-muted/50 to-muted/30">
@@ -314,8 +314,8 @@ export default function LeaderboardPage() {
             {sortedLeaderboard.slice(0, 20).map((entry) => (
               <div 
                 key={entry.rank} 
-                className={`rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm p-4 transition-all duration-300 hover:shadow-lg ${
-                  entry.rank <= 3 ? 'bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-400/30' : ''
+                className={`rounded-xl border-2 border-gray-300 bg-white shadow-lg p-4 transition-all duration-300 hover:shadow-xl ${
+                  entry.rank <= 3 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200' : ''
                 }`}
               >
                 <div className="flex items-start gap-4 mb-3">
