@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Trophy, Zap, Award, TrendingUp } from 'lucide-react'
+import { Trophy, Zap, Award, TrendingUp, Crown, Medal, Star, Sparkles } from 'lucide-react'
 
 const mockLeaderboard = [
   {
@@ -160,32 +160,46 @@ export default function LeaderboardPage() {
     <main>
       <Navbar />
 
-      {/* Header Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Trophy className="w-8 h-8 text-primary" />
-              <h1 className="text-4xl sm:text-5xl font-bold text-foreground">
+      {/* Header Section with Gradient Background */}
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 opacity-90" />
+        <div className="absolute inset-0 bg-black/20" />
+        
+        {/* Animated Background Elements */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-20 right-20 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute bottom-10 left-1/4 w-36 h-36 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-500" />
+        
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm">
+                <Trophy className="w-10 h-10 text-yellow-300" />
+              </div>
+              <h1 className="text-5xl sm:text-6xl font-bold text-white">
                 Global Leaderboard
               </h1>
+              <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm">
+                <Crown className="w-10 h-10 text-yellow-300" />
+              </div>
             </div>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Compete, achieve, and climb the ranks. See where you stand in the community.
             </p>
           </div>
 
           {/* Filter and Sort Controls */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-between">
-            <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col lg:flex-row gap-6 justify-between items-center">
+            <div className="flex flex-wrap gap-2 justify-center">
               {teams.map((team) => (
                 <button
                   key={team}
                   onClick={() => setFilterTeam(team)}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 ${
+                  className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
                     filterTeam === team
-                      ? 'bg-primary text-primary-foreground'
-                      : 'border border-border bg-card text-foreground hover:border-primary/50'
+                      ? 'bg-white text-indigo-600 shadow-lg shadow-white/30'
+                      : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm'
                   }`}
                 >
                   {team}
@@ -194,7 +208,7 @@ export default function LeaderboardPage() {
             </div>
 
             {/* Sort Controls */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center">
               {[
                 { value: 'points' as const, label: 'Points', icon: Zap },
                 { value: 'events' as const, label: 'Events', icon: Trophy },
@@ -206,10 +220,10 @@ export default function LeaderboardPage() {
                   <button
                     key={option.value}
                     onClick={() => setSortBy(option.value)}
-                    className={`px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 ${
+                    className={`px-3 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-2 ${
                       sortBy === option.value
-                        ? 'bg-secondary text-secondary-foreground'
-                        : 'border border-border bg-card text-foreground hover:border-secondary/50'
+                        ? 'bg-white text-indigo-600 shadow-lg shadow-white/30'
+                        : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -223,13 +237,13 @@ export default function LeaderboardPage() {
       </section>
 
       {/* Leaderboard Table */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20">
         <div className="max-w-7xl mx-auto">
           {/* Desktop View */}
-          <div className="hidden md:block rounded-xl border border-border bg-card overflow-hidden">
+          <div className="hidden md:block rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="border-b border-border bg-muted">
+                <thead className="border-b border-border/50 bg-gradient-to-r from-muted/50 to-muted/30">
                   <tr>
                     <th className="px-6 py-4 text-left text-sm font-bold text-foreground">Rank</th>
                     <th className="px-6 py-4 text-left text-sm font-bold text-foreground">Developer</th>
@@ -241,27 +255,59 @@ export default function LeaderboardPage() {
                     <th className="px-6 py-4 text-center text-sm font-bold text-foreground">Trend</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border">
+                <tbody className="divide-y divide-border/30">
                   {sortedLeaderboard.slice(0, 20).map((entry, idx) => (
-                    <tr key={entry.rank} className="hover:bg-muted/50 transition-colors duration-200">
+                    <tr 
+                      key={entry.rank} 
+                      className={`hover:bg-gradient-to-r hover:from-indigo-500/10 hover:to-purple-500/10 transition-all duration-300 ${
+                        entry.rank <= 3 ? 'bg-gradient-to-r from-yellow-500/5 to-orange-500/5' : ''
+                      }`}
+                    >
                       <td className="px-6 py-4">
-                        <span className="text-2xl font-bold text-foreground">
-                          {getRankMedal(entry.rank)}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          {entry.rank <= 3 && (
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                              entry.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-yellow-900' :
+                              entry.rank === 2 ? 'bg-gradient-to-br from-gray-300 to-gray-500 text-gray-700' :
+                              'bg-gradient-to-br from-amber-600 to-amber-800 text-amber-100'
+                            }`}>
+                              {entry.rank}
+                            </div>
+                          )}
+                          <span className={`text-2xl font-bold ${
+                            entry.rank === 1 ? 'text-yellow-600' :
+                            entry.rank === 2 ? 'text-gray-500' :
+                            entry.rank === 3 ? 'text-amber-600' :
+                            'text-foreground'
+                          }`}>
+                            {getRankMedal(entry.rank)}
+                          </span>
+                        </div>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
-                          <img
-                            src={entry.avatar}
-                            alt={entry.name}
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
+                          <div className="relative">
+                            <img
+                              src={entry.avatar}
+                              alt={entry.name}
+                              className="w-10 h-10 rounded-full object-cover ring-2 ring-border/50"
+                            />
+                            {entry.rank <= 3 && (
+                              <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <Star className="w-2 h-2 text-yellow-900" />
+                              </div>
+                            )}
+                          </div>
                           <span className="font-semibold text-foreground">{entry.name}</span>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-sm text-muted-foreground">{entry.team}</td>
                       <td className="px-6 py-4 text-center">
-                        <span className="px-3 py-1 rounded-full text-sm font-bold bg-primary/10 text-primary">
+                        <span className={`px-3 py-1 rounded-full text-sm font-bold ${
+                          entry.rank <= 3 
+                            ? 'bg-gradient-to-r from-yellow-400/20 to-orange-400/20 text-yellow-600 border border-yellow-400/30' 
+                            : 'bg-primary/10 text-primary'
+                        }`}>
                           {entry.points}
                         </span>
                       </td>
@@ -272,10 +318,19 @@ export default function LeaderboardPage() {
                         {entry.projectsSubmitted}
                       </td>
                       <td className="px-6 py-4 text-center text-foreground font-semibold">
-                        {entry.badges}
+                        <div className="flex items-center justify-center gap-1">
+                          {entry.badges}
+                          {entry.badges >= 10 && <Sparkles className="w-3 h-3 text-yellow-500" />}
+                        </div>
                       </td>
                       <td className="px-6 py-4 text-center text-2xl">
-                        {getTrendIcon(entry.trend)}
+                        <div className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${
+                          entry.trend === 'up' ? 'bg-green-100 text-green-600' :
+                          entry.trend === 'down' ? 'bg-red-100 text-red-600' :
+                          'bg-gray-100 text-gray-600'
+                        }`}>
+                          {getTrendIcon(entry.trend)}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -287,26 +342,62 @@ export default function LeaderboardPage() {
           {/* Mobile View */}
           <div className="md:hidden space-y-4">
             {sortedLeaderboard.slice(0, 20).map((entry) => (
-              <div key={entry.rank} className="rounded-lg border border-border bg-card p-4">
+              <div 
+                key={entry.rank} 
+                className={`rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm p-4 transition-all duration-300 hover:shadow-lg ${
+                  entry.rank <= 3 ? 'bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-400/30' : ''
+                }`}
+              >
                 <div className="flex items-start gap-4 mb-3">
-                  <div className="text-2xl font-bold text-foreground">
-                    {getRankMedal(entry.rank)}
+                  <div className="flex items-center gap-2">
+                    {entry.rank <= 3 && (
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                        entry.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-yellow-900' :
+                        entry.rank === 2 ? 'bg-gradient-to-br from-gray-300 to-gray-500 text-gray-700' :
+                        'bg-gradient-to-br from-amber-600 to-amber-800 text-amber-100'
+                      }`}>
+                        {entry.rank}
+                      </div>
+                    )}
+                    <div className={`text-2xl font-bold ${
+                      entry.rank === 1 ? 'text-yellow-600' :
+                      entry.rank === 2 ? 'text-gray-500' :
+                      entry.rank === 3 ? 'text-amber-600' :
+                      'text-foreground'
+                    }`}>
+                      {getRankMedal(entry.rank)}
+                    </div>
                   </div>
-                  <img
-                    src={entry.avatar}
-                    alt={entry.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <div className="relative flex-1">
+                    <img
+                      src={entry.avatar}
+                      alt={entry.name}
+                      className="w-12 h-12 rounded-full object-cover ring-2 ring-border/50"
+                    />
+                    {entry.rank <= 3 && (
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <Star className="w-2 h-2 text-yellow-900" />
+                      </div>
+                    )}
+                  </div>
                   <div className="flex-1">
                     <h3 className="font-bold text-foreground">{entry.name}</h3>
                     <p className="text-sm text-muted-foreground">{entry.team}</p>
                   </div>
-                  <span className="text-2xl">{getTrendIcon(entry.trend)}</span>
+                  <div className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${
+                    entry.trend === 'up' ? 'bg-green-100 text-green-600' :
+                    entry.trend === 'down' ? 'bg-red-100 text-red-600' :
+                    'bg-gray-100 text-gray-600'
+                  }`}>
+                    {getTrendIcon(entry.trend)}
+                  </div>
                 </div>
-                <div className="grid grid-cols-4 gap-2 pt-3 border-t border-border">
+                <div className="grid grid-cols-4 gap-2 pt-3 border-t border-border/30">
                   <div className="text-center">
                     <p className="text-xs text-muted-foreground mb-1">Points</p>
-                    <p className="font-bold text-primary text-sm">{entry.points}</p>
+                    <p className={`font-bold text-sm ${
+                      entry.rank <= 3 ? 'text-yellow-600' : 'text-primary'
+                    }`}>{entry.points}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-muted-foreground mb-1">Events</p>
@@ -318,7 +409,10 @@ export default function LeaderboardPage() {
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-muted-foreground mb-1">Badges</p>
-                    <p className="font-bold text-foreground text-sm">{entry.badges}</p>
+                    <div className="flex items-center justify-center gap-1">
+                      <p className="font-bold text-foreground text-sm">{entry.badges}</p>
+                      {entry.badges >= 10 && <Sparkles className="w-3 h-3 text-yellow-500" />}
+                    </div>
                   </div>
                 </div>
               </div>
