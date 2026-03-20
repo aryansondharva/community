@@ -252,7 +252,6 @@ export default function LeaderboardPage() {
                     <th className="px-6 py-4 text-center text-sm font-bold text-foreground">Events</th>
                     <th className="px-6 py-4 text-center text-sm font-bold text-foreground">Projects</th>
                     <th className="px-6 py-4 text-center text-sm font-bold text-foreground">Badges</th>
-                    <th className="px-6 py-4 text-center text-sm font-bold text-foreground">Trend</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/30">
@@ -323,15 +322,6 @@ export default function LeaderboardPage() {
                           {entry.badges >= 10 && <Sparkles className="w-3 h-3 text-yellow-500" />}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-center text-2xl">
-                        <div className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${
-                          entry.trend === 'up' ? 'bg-green-100 text-green-600' :
-                          entry.trend === 'down' ? 'bg-red-100 text-red-600' :
-                          'bg-gray-100 text-gray-600'
-                        }`}>
-                          {getTrendIcon(entry.trend)}
-                        </div>
-                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -383,13 +373,6 @@ export default function LeaderboardPage() {
                   <div className="flex-1">
                     <h3 className="font-bold text-foreground">{entry.name}</h3>
                     <p className="text-sm text-muted-foreground">{entry.team}</p>
-                  </div>
-                  <div className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${
-                    entry.trend === 'up' ? 'bg-green-100 text-green-600' :
-                    entry.trend === 'down' ? 'bg-red-100 text-red-600' :
-                    'bg-gray-100 text-gray-600'
-                  }`}>
-                    {getTrendIcon(entry.trend)}
                   </div>
                 </div>
                 <div className="grid grid-cols-4 gap-2 pt-3 border-t border-border/30">
