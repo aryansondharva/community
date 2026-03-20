@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Trophy, Zap, Award, TrendingUp, Crown, Medal, Star, Sparkles } from 'lucide-react'
+import { Trophy, Zap, Award, Crown, Medal, Star, Sparkles } from 'lucide-react'
 
 const mockLeaderboard = [
   {
@@ -15,7 +15,6 @@ const mockLeaderboard = [
     eventsParticipated: 8,
     projectsSubmitted: 5,
     badges: 12,
-    trend: 'up',
   },
   {
     rank: 2,
@@ -26,7 +25,6 @@ const mockLeaderboard = [
     eventsParticipated: 7,
     projectsSubmitted: 6,
     badges: 11,
-    trend: 'up',
   },
   {
     rank: 3,
@@ -37,7 +35,6 @@ const mockLeaderboard = [
     eventsParticipated: 9,
     projectsSubmitted: 4,
     badges: 10,
-    trend: 'stable',
   },
   {
     rank: 4,
@@ -48,7 +45,6 @@ const mockLeaderboard = [
     eventsParticipated: 6,
     projectsSubmitted: 7,
     badges: 9,
-    trend: 'up',
   },
   {
     rank: 5,
@@ -59,7 +55,6 @@ const mockLeaderboard = [
     eventsParticipated: 7,
     projectsSubmitted: 5,
     badges: 10,
-    trend: 'down',
   },
   {
     rank: 6,
@@ -70,7 +65,6 @@ const mockLeaderboard = [
     eventsParticipated: 8,
     projectsSubmitted: 3,
     badges: 8,
-    trend: 'up',
   },
   {
     rank: 7,
@@ -81,7 +75,6 @@ const mockLeaderboard = [
     eventsParticipated: 6,
     projectsSubmitted: 4,
     badges: 7,
-    trend: 'stable',
   },
   {
     rank: 8,
@@ -92,7 +85,6 @@ const mockLeaderboard = [
     eventsParticipated: 5,
     projectsSubmitted: 6,
     badges: 8,
-    trend: 'down',
   },
   {
     rank: 9,
@@ -103,7 +95,6 @@ const mockLeaderboard = [
     eventsParticipated: 5,
     projectsSubmitted: 5,
     badges: 7,
-    trend: 'up',
   },
   {
     rank: 10,
@@ -114,7 +105,6 @@ const mockLeaderboard = [
     eventsParticipated: 4,
     projectsSubmitted: 4,
     badges: 6,
-    trend: 'stable',
   },
 ]
 
@@ -144,16 +134,7 @@ export default function LeaderboardPage() {
   })
 
   const getRankMedal = (rank: number) => {
-    if (rank === 1) return '🥇'
-    if (rank === 2) return '🥈'
-    if (rank === 3) return '🥉'
     return `#${rank}`
-  }
-
-  const getTrendIcon = (trend: string) => {
-    if (trend === 'up') return '📈'
-    if (trend === 'down') return '📉'
-    return '➡️'
   }
 
   return (
@@ -163,74 +144,73 @@ export default function LeaderboardPage() {
       {/* Header Section with Gradient Background */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 opacity-90" />
-        <div className="absolute inset-0 bg-black/20" />
-        
-        {/* Animated Background Elements */}
-        <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-20 right-20 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute bottom-10 left-1/4 w-36 h-36 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-500" />
+        <div className="absolute inset-0 bg-gray-800" />
         
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center mb-8">
+                
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm">
-                <Trophy className="w-10 h-10 text-yellow-300" />
-              </div>
+              
+              
               <h1 className="text-5xl sm:text-6xl font-bold text-white">
-                Global Leaderboard
+                Leaderboard
               </h1>
-              <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm">
-                <Crown className="w-10 h-10 text-yellow-300" />
-              </div>
+             
             </div>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Compete, achieve, and climb the ranks. See where you stand in the community.
             </p>
           </div>
 
-          {/* Filter and Sort Controls */}
-          <div className="flex flex-col lg:flex-row gap-6 justify-between items-center">
-            <div className="flex flex-wrap gap-2 justify-center">
-              {teams.map((team) => (
-                <button
-                  key={team}
-                  onClick={() => setFilterTeam(team)}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
-                    filterTeam === team
-                      ? 'bg-white text-indigo-600 shadow-lg shadow-white/30'
-                      : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm'
-                  }`}
-                >
-                  {team}
-                </button>
-              ))}
+          {/* Enhanced Filter and Sort Controls */}
+          <div className="flex flex-col lg:flex-row gap-8 justify-between items-center">
+            {/* Team Filter */}
+            <div className="flex flex-col gap-3">
+              <label className="text-sm font-semibold text-white/80">Filter by Team</label>
+              <div className="flex flex-wrap gap-2">
+                {teams.map((team) => (
+                  <button
+                    key={team}
+                    onClick={() => setFilterTeam(team)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 ${
+                      filterTeam === team
+                        ? 'bg-white text-gray-800 shadow-lg'
+                        : 'bg-gray-700/50 text-white/80 hover:bg-gray-600/50 border border-gray-600/30'
+                    }`}
+                  >
+                    {team}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Sort Controls */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {[
-                { value: 'points' as const, label: 'Points', icon: Zap },
-                { value: 'events' as const, label: 'Events', icon: Trophy },
-                { value: 'projects' as const, label: 'Projects', icon: Award },
-                { value: 'badges' as const, label: 'Badges', icon: TrendingUp },
-              ].map((option) => {
-                const Icon = option.icon
-                return (
-                  <button
-                    key={option.value}
-                    onClick={() => setSortBy(option.value)}
-                    className={`px-3 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-2 ${
-                      sortBy === option.value
-                        ? 'bg-white text-indigo-600 shadow-lg shadow-white/30'
-                        : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{option.label}</span>
-                  </button>
-                )
-              })}
+            <div className="flex flex-col gap-3">
+              <label className="text-sm font-semibold text-white/80">Sort by</label>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { value: 'points' as const, label: 'Points', icon: Zap },
+                  { value: 'events' as const, label: 'Events', icon: Trophy },
+                  { value: 'projects' as const, label: 'Projects', icon: Award },
+                  { value: 'badges' as const, label: 'Badges', icon: Award },
+                ].map((option) => {
+                  const Icon = option.icon
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => setSortBy(option.value)}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center gap-2 ${
+                        sortBy === option.value
+                          ? 'bg-white text-gray-800 shadow-lg'
+                          : 'bg-gray-700/50 text-white/80 hover:bg-gray-600/50 border border-gray-600/30'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      <span>{option.label}</span>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>

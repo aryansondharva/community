@@ -41,7 +41,7 @@ export function Footer() {
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
-              <span className="font-bold text-lg text-foreground">HackHub</span>
+              <span className="font-bold text-lg text-foreground">Tech Assassin</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Empowering open source developers through collaborative hackathon experiences.
@@ -86,7 +86,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} HackHub. All rights reserved.
+            © {currentYear} Tech Assassin. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Built with passion for open source developers worldwide.

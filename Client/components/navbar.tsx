@@ -23,7 +23,7 @@ export function Navbar() {
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center transition-transform group-hover:scale-110">
               <span className="text-white font-bold text-lg">H</span>
             </div>
-            <span className="font-bold text-lg hidden sm:inline text-foreground">HackHub</span>
+            <span className="font-bold text-lg hidden sm:inline text-foreground">Tech Assassin</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -68,7 +68,7 @@ export default function RegisterPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 mb-4">
               <span className="text-white font-bold text-2xl">H</span>
             </div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">Join HackHub</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Join Tech Assassin</h1>
             <p className="text-muted-foreground">Create your account and start your hackathon journey</p>
           </div>
 

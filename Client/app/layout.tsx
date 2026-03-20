@@ -7,7 +7,7 @@ const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'HackHub - Open Source Hackathon Community',
+  title: 'Tech Assassin - Open Source Hackathon Community',
   description: 'Join the vibrant open source hackathon community. Discover events, form teams, showcase projects, and climb the leaderboard.',
   keywords: 'hackathon, open source, developers, events, projects, community',
   generator: 'v0.app',
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: 'HackHub - Open Source Hackathon Community',
+    title: 'Tech Assassin - Open Source Hackathon Community',
     description: 'Join the vibrant open source hackathon community',
-    url: 'https://hackhub.dev',
-    siteName: 'HackHub',
+    url: 'https://techassassin.dev',
+    siteName: 'Tech Assassin',
     images: [
       {
         url: '/og-image.png',

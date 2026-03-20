@@ -16,7 +16,7 @@ export function HeroSection() {
         <div className="mb-8 inline-block">
           <div className="px-4 py-2 rounded-full glass border border-white/30 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-foreground">Welcome to HackHub Community</span>
+            <span className="text-sm font-semibold text-foreground">Welcome to Tech Assassin Community</span>
           </div>
         </div>
 
@@ -47,15 +47,15 @@ export function HeroSection() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mb-12">
           <div className="glass rounded-xl p-6 border border-white/20">
-            <div className="text-3xl font-bold text-primary">1.2K+</div>
+            <div className="text-3xl font-bold text-primary">10+</div>
             <div className="text-sm text-muted-foreground mt-2">Events</div>
           </div>
           <div className="glass rounded-xl p-6 border border-white/20">
-            <div className="text-3xl font-bold text-secondary">45K+</div>
+            <div className="text-3xl font-bold text-secondary">40+</div>
             <div className="text-sm text-muted-foreground mt-2">Developers</div>
           </div>
           <div className="glass rounded-xl p-6 border border-white/20">
-            <div className="text-3xl font-bold text-accent">8.5M+</div>
+            <div className="text-3xl font-bold text-accent">7000 IN+</div>
             <div className="text-sm text-muted-foreground mt-2">Prize Pool</div>
           </div>
         </div>
@@ -65,9 +65,9 @@ export function HeroSection() {
           <p className="text-sm font-semibold text-muted-foreground uppercase mb-4">Featured Hackathons</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { name: 'OpenSource 2024', date: 'Mar 20-22' },
-              { name: 'DevFest Global', date: 'Apr 10-12' },
-              { name: 'Innovation Week', date: 'May 5-7' },
+              { name: 'OpenSource 2026', date: 'TBA' },
+              { name: 'DevFest Global', date: 'TBA' },
+              { name: 'Innovation Week', date: 'TBA' },
             ].map((hackathon) => (
               <div key={hackathon.name} className="text-left">
                 <div className="font-semibold text-foreground text-sm">{hackathon.name}</div>

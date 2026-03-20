@@ -43,7 +43,7 @@ export default function LoginPage() {
               <span className="text-white font-bold text-2xl">H</span>
             </div>
             <h1 className="text-3xl font-bold text-foreground mb-2">Welcome Back</h1>
-            <p className="text-muted-foreground">Sign in to your HackHub account</p>
+            <p className="text-muted-foreground">Sign in to your Tech Assassin account</p>
           </div>
 
           {/* Login Form */}
@@ -158,7 +158,7 @@ export default function LoginPage() {
           {/* Demo Credentials */}
           <div className="mt-8 p-4 rounded-lg border border-border bg-muted/30">
             <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Demo Credentials</p>
-            <p className="text-sm text-muted-foreground">Email: <span className="font-mono">demo@hackhub.dev</span></p>
+            <p className="text-sm text-muted-foreground">Email: <span className="font-mono">demo@techassassin.dev</span></p>
             <p className="text-sm text-muted-foreground">Password: <span className="font-mono">demo123</span></p>
           </div>
         </div>
