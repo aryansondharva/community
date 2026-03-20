@@ -214,11 +214,11 @@ export default function RegisterPage() {
               />
               <span className="text-sm text-muted-foreground">
                 I agree to the{' '}
-                <Link href="#" className="text-primary hover:underline font-semibold">
+                <Link key="terms" href="#" className="text-primary hover:underline font-semibold">
                   Terms of Service
                 </Link>
                 {' '}and{' '}
-                <Link href="#" className="text-primary hover:underline font-semibold">
+                <Link key="privacy" href="#" className="text-primary hover:underline font-semibold">
                   Privacy Policy
                 </Link>
               </span>

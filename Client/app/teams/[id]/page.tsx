@@ -146,11 +146,11 @@ Our team has participated in 5+ hackathons and has won 3 times. We're always loo
                           ))}
                         </div>
                         <div className="flex gap-3">
-                          <a href="#" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
+                          <a key="github" href="#" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
                             <Github className="w-4 h-4" />
                             GitHub
                           </a>
-                          <a href="#" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
+                          <a key="contact" href="#" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
                             <Mail className="w-4 h-4" />
                             Contact
                           </a>

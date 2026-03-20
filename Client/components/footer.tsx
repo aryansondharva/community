@@ -51,7 +51,7 @@ export function Footer() {
                 const Icon = social.icon
                 return (
                   <Link
-                    key={social.label}
+                    key={`social-${social.label}`}
                     href={social.href}
                     aria-label={social.label}
                     className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-muted hover:bg-muted/80 transition-colors duration-200"
@@ -69,7 +69,7 @@ export function Footer() {
               <h3 className="font-semibold text-foreground mb-4">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (
-                  <li key={link.href}>
+                  <li key={`${link.label}-${link.href}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"

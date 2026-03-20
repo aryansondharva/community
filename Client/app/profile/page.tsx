@@ -92,15 +92,15 @@ export default function ProfilePage() {
 
               {/* Social Links */}
               <div className="space-y-3 pt-6 border-t border-border">
-                <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+                <a key="github" href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
                   <Github className="w-5 h-5" />
                   <span className="text-sm">@{user.socials.github}</span>
                 </a>
-                <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+                <a key="linkedin" href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
                   <Linkedin className="w-5 h-5" />
                   <span className="text-sm">{user.socials.linkedin}</span>
                 </a>
-                <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+                <a key="twitter" href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">@{user.socials.twitter}</span>
                 </a>
