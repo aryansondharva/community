@@ -38,6 +38,7 @@ List of the amazing Communities groups in India
 ## Open Communities
 | Community Name | website | Type of Community  | Communication Channel | Social Media Link |
 | ------ | ------ | ------ | ------ | ------ |
+| Dotslash | [Dotslash](https://www.hackatdotslash.co.in/) | Hackthons | [DevFolio](https://dotslash-9.devfolio.co/overview) | [@hackatdotslash](https://www.instagram.com/hackatdotslash/) |
 
 ## College Societies
 | Community Name | College Name | website | Type of Community  | Communication Channel | Social Media Link |
