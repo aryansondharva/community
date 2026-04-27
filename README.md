@@ -14,12 +14,6 @@ List of the amazing Communities groups in India
 - College Name - Name of College/Institute/University
 
 
-## :round_pushpin: Jaipur
-## Open Communities
-| Community Name | website | Type of Community  | Communication Channel | Social Media Link |
-| ------ | ------ | ------ | ------ | ------ |
-| GlobalTechTalk Jaipur | [TechTalks](https://techtalk.co.in) | opensource | [Telegram](https://t.me/globaltechtalks) | [@globaltechtalks](https://www.facebook.com/GlobalTechTalks) |
-
 
 ## :round_pushpin: Navsari
 ## Open Communities
