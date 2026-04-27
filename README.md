@@ -42,4 +42,4 @@ List of the amazing Communities groups in India
 ## College Societies
 | Community Name | College Name | website | Type of Community  | Communication Channel | Social Media Link |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| Dotslash | [Dotslash](https://www.hackatdotslash.co.in/) | Hackthons | [DevFolio](https://dotslash-9.devfolio.co/overview) | [@hackatdotslash](https://www.instagram.com/hackatdotslash/) |
+| Dotslash | SVNIT Surat |[Dotslash](https://www.hackatdotslash.co.in/) | Hackthons | [DevFolio](https://dotslash-9.devfolio.co/overview) | [@hackatdotslash](https://www.instagram.com/hackatdotslash/) |
