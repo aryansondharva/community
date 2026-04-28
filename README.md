@@ -21,8 +21,8 @@ List of the amazing Communities groups in India
 - [Bikaner](#round_pushpin-Bikaner)
 - [Nagpur](#round_pushpin-Nagpur)
 - [Vellore](#round_pushpin-Vellore)
-- 
 
+<br/>
 
 - Communities name - Name of the Communitiy
 - Website - Website link (if you have)
