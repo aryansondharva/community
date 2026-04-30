@@ -1,5 +1,5 @@
 ## Communities
-List of the amazing Communities groups in India
+List of the amazing Communities groups in World
 
 ## Locations
 - [Navsari](#round_pushpin-Navsari)
