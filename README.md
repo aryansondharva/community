@@ -1,170 +1,62 @@
-# Community Directory 🌍
+# Community Directory
 
-![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
-![Made in India](https://img.shields.io/badge/Made%20in-India-orange)
-![Open Source](https://img.shields.io/badge/Open%20Source-Yes-blue)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+A simple directory of tech communities by city.
 
-## Find the right tech community near you 🚀
+Use this repository to find developer groups, design communities, open-source groups, cybersecurity groups, DevOps communities, startup groups, and college societies near you.
 
-**Community Directory** is a curated list of amazing tech, design, cybersecurity, DevOps, open-source, startup, and college communities from different cities.
+## Cities
 
-This repository helps students, developers, designers, and contributors find the right organization/community according to their location and interest.
-
----
-
-## Why this repository? 🤔
-
-Many students and beginners want to join communities, but they do not know:
-
-- Which tech communities are active in their city
-- Which college clubs are available
-- Where to find official links
-- How to join WhatsApp, Telegram, Slack, Discord, or social groups
-- Which community is best for developers, designers, cybersecurity, DevOps, mobile, open-source, etc.
-
-This repo solves that problem by collecting all community details in one place.
-
----
-
-## Who can use this? 👥
-
-This repo is useful for:
-
-- Students
-- Developers
-- Designers
-- Open-source contributors
-- Cybersecurity learners
-- DevOps learners
-- College clubs
-- Hackathon teams
-- Community organizers
-- Startup and tech enthusiasts
-
----
-
-## Repository Structure 📁
-
-```txt
-community/
-│
-├── README.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── LICENSE
-│
-├── .github/
-│   ├── pull_request_template.md
-│   └── ISSUE_TEMPLATE/
-│       └── add-community.md
-│
-└── data/
-    ├── navsari.md
-    ├── surat.md
-    ├── delhi-ncr.md
-    ├── mumbai.md
-    ├── pune.md
-    ├── bangalore.md
-    ├── hyderabad.md
-    ├── visakhapatnam.md
-    ├── ahmedabad.md
-    ├── coimbatore.md
-    ├── chennai.md
-    ├── kolkata.md
-    ├── chandigarh.md
-    ├── indore.md
-    ├── jaipur.md
-    ├── bhopal.md
-    ├── bikaner.md
-    ├── nagpur.md
-    └── vellore.md
-```
-
----
-
-## Community Types 🏷️
-
-You can add communities from these categories:
-
-- Developer
-- Open Source
-- Designer
-- Cyber Security
-- DevOps
-- Cloud
-- Mobile Development
-- AI/ML
-- Startup
-- College Society
-- Hackathon Community
-- Women in Tech
-- Blockchain
-- Linux
-- Data Science
-- Other Tech Communities
-
----
-
-## Locations 📍
-
-- [Navsari](data/navsari.md)
-- [Surat](data/surat.md)
-- [Delhi NCR](data/delhi-ncr.md)
-- [Mumbai](data/mumbai.md)
-- [Pune](data/pune.md)
-- [Bangalore](data/bangalore.md)
-- [Hyderabad](data/hyderabad.md)
-- [Visakhapatnam](data/visakhapatnam.md)
 - [Ahmedabad](data/ahmedabad.md)
-- [Coimbatore](data/coimbatore.md)
-- [Chennai](data/chennai.md)
-- [Kolkata](data/kolkata.md)
-- [Chandigarh](data/chandigarh.md)
-- [Indore](data/indore.md)
-- [Jaipur](data/jaipur.md)
+- [Bangalore](data/bangalore.md)
 - [Bhopal](data/bhopal.md)
 - [Bikaner](data/bikaner.md)
+- [Chandigarh](data/chandigarh.md)
+- [Chennai](data/chennai.md)
+- [Coimbatore](data/coimbatore.md)
+- [Delhi NCR](data/delhi-ncr.md)
+- [Hyderabad](data/hyderabad.md)
+- [Indore](data/indore.md)
+- [Jaipur](data/jaipur.md)
+- [Kolkata](data/kolkata.md)
+- [Mumbai](data/mumbai.md)
 - [Nagpur](data/nagpur.md)
+- [Navsari](data/navsari.md)
+- [Pune](data/pune.md)
+- [Surat](data/surat.md)
 - [Vellore](data/vellore.md)
+- [Visakhapatnam](data/visakhapatnam.md)
 
----
-
-## How to Contribute 🤝
+## How to Contribute
 
 You can contribute by adding:
 
 - A new community
-- A new city/location
-- Correct website links
-- Correct social media links
-- College society details
+- A new college society
+- A new city
+- Correct website or social media links
 - Missing communication channel links
-- Community type/category
-- Fix spelling or formatting mistakes
+- Spelling or formatting fixes
 
-### Contribution Steps
+Steps:
 
-1. Fork this repository
-2. Open the correct city file inside the `data/` folder
-3. Add community details in the correct table
-4. If your city is not available, create a new city file
-5. Add your new city link in this `README.md`
-6. Create a Pull Request
+1. Fork this repository.
+2. Open the correct city file inside the `data/` folder.
+3. Add the community details in the correct table.
+4. If the city file does not exist, create a new one.
+5. Add the new city link in this README.
+6. Create a pull request.
 
----
+## Community Format
 
-## Community Entry Format ✅
-
-### For Open Communities
+For open communities:
 
 ```md
 | Community Name | Website | Type of Community | Communication Channel | Social Media Link |
 |---|---|---|---|---|
-| Example Community | https://example.com | Developer | Telegram/WhatsApp/Slack | https://instagram.com/example |
+| Example Community | https://example.com | Developer | Telegram | https://instagram.com/example |
 ```
 
-### For College Societies
+For college societies:
 
 ```md
 | Community Name | College Name | Website | Type of Community | Communication Channel | Social Media Link |
@@ -172,37 +64,20 @@ You can contribute by adding:
 | Example Club | ABC College | https://example.com | Developer | Discord | https://instagram.com/example |
 ```
 
----
-
-## Contribution Rules 📌
-
-Please follow these rules before contributing:
-
-- Add only real and active communities
-- Do not add fake or spam links
-- Add the community in the correct city
-- Use correct spelling
-- Use official website or official social media links if possible
-- Do not remove other communities without reason
-- Keep the table format clean
-- If information is not available, use `-`
-
----
-
-## Need a new city? 🏙️
+## Add a New City
 
 Create a new markdown file inside the `data/` folder.
 
 Example:
 
 ```txt
-data/city-name.md
+data/rajkot.md
 ```
 
-Use this format:
+Use this basic structure:
 
 ```md
-# 📍 City Name
+# Rajkot
 
 ## Open Communities
 
@@ -216,52 +91,23 @@ Use this format:
 |---|---|---|---|---|---|
 | - | - | - | - | - | - |
 
-[⬅ Back to Home](../README.md)
+[Back to Home](../README.md)
 ```
 
----
+## Rules
 
-## Good First Contributions 🌱
+- Add only real and active communities.
+- Use official links when possible.
+- Add the community in the correct city file.
+- Keep the table format clean.
+- Use `-` if information is not available.
+- Do not add spam or fake links.
+- Do not remove existing communities without a valid reason.
 
-New contributors can start with:
-
-- Add your city community
-- Add your college club
-- Fix spelling mistakes
-- Add missing website links
-- Add missing social media links
-- Add communication channel links
-- Improve README formatting
-- Add more community categories
-
----
-
-## Future Plan 🔮
-
-Planned improvements:
-
-- Add more cities
-- Add verified communities
-- Add community logos
-- Add event and meetup links
-- Add website for this directory
-- Add filters by city and community type
-- Convert data into JSON/YAML format for website usage
-
----
-
-## Support ⭐
-
-If this repository helps you, please give it a star ⭐ and share it with your friends.
-
----
-
-## License 📄
+## License
 
 This project is licensed under the MIT License.
 
----
+## Maintainer
 
-## Maintainer 👨‍💻
-
-Created and maintained by [Aryan Sondharva](https://github.com/aryansondharva)
+Created and maintained by [Aryan Sondharva](https://github.com/aryansondharva).
