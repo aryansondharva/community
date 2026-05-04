@@ -1,4 +1,4 @@
-# Community Directory
+# Community Directory 
 
 A simple directory of tech communities by city.
 
@@ -64,7 +64,7 @@ For college societies:
 | Example Club | ABC College | https://example.com | Developer | Discord | https://instagram.com/example |
 ```
 
-## Add a New City
+## Add a New City .
 
 Create a new markdown file inside the `data/` folder.
 
